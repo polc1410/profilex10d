@@ -82,6 +82,17 @@
 			/>
 
 			<field
+				name="mobile"
+				type="tel"
+				id="mobile"
+				description="PLG_USER_PROFILE_FIELD_MOBILE_DESC"
+				filter="string"
+				label="PLG_USER_PROFILE_FIELD_MOBILE_LABEL"
+				message="PLG_USER_PROFILE_FIELD_MOBILE_MESSAGE"
+				size="30"
+			/>
+			
+			<field
 				name="website"
 				type="url"
 				id="website"
