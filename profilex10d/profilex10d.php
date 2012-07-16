@@ -179,6 +179,7 @@ class plgUserProfilex10d extends JPlugin
 			'country',
 			'postal_code',
 			'phone',
+			'mobile',
 			'website',
 			'favoritebook',
 			'aboutme',
