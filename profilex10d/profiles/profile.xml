@@ -59,6 +59,10 @@
 				size="30"
 			/>
 
+</fieldset>
+<fieldset name="profile11"
+			label="PLG_USER_PROFILE_SLIDER_LABEL"
+		>
 			<field
 				name="phone"
 				type="tel"
