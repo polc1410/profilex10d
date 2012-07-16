@@ -91,7 +91,16 @@
 					<option value="0">JDISABLED</option>
 				</field>
 
-			
+						<field name="register-require_mobile" type="list"
+
+					description="PLG_USER_PROFILE_FIELD_MOBILE_DESC"
+					label="PLG_USER_PROFILE_FIELD_MOBILE_LABEL"
+				>
+					<option value="2">JOPTION_REQUIRED</option>
+					<option value="1">JOPTION_OPTIONAL</option>
+					<option value="0">JDISABLED</option>
+				</field>
+				
 				<field
 					name="register-require_dob"
 					type="list"
@@ -176,6 +185,15 @@
 					<option value="0">JDISABLED</option>
 				</field>
 				
+				<field name="profile-require_mobile" type="list"
+
+					description="PLG_USER_PROFILE_FIELD_MOBILE_DESC"
+					label="PLG_USER_PROFILE_FIELD_MOBILE_LABEL"
+				>
+					<option value="2">JOPTION_REQUIRED</option>
+					<option value="1">JOPTION_OPTIONAL</option>
+					<option value="0">JDISABLED</option>
+				</field>
 				
 				<field
 					name="profile-require_dob"

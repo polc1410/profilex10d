@@ -178,6 +178,7 @@ class plgUserProfile10 extends JPlugin
 			'region',
 			'postal_code',
 			'phone',
+			'mobile',
 			'dob',
 		);
 		
