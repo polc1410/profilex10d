@@ -176,30 +176,13 @@ class plgUserProfile10 extends JPlugin
 			'address2',
 			'city',
 			'region',
-			'country',
 			'postal_code',
 			'phone',
-			'mobile',
-			'website',
-			'favoritebook',
-			'aboutme',
 			'dob',
 		);
 		
-		$tosarticle = $this->params->get('register_tos_article');
-		$tosenabled = $this->params->get('register-require_tos', 0);
 
-		// We need to be in the registration form, field needs to be enabled and we need an article ID
-		if ($name != 'com_users.registration' || !$tosenabled || !$tosarticle)
-		{
-			// We only want the TOS in the registration form
-			$form->removeField('tos', 'profile');
-		}
-		else
-		{
-			// Push the TOS article ID into the TOS field.
-			$form->setFieldAttribute('tos', 'article', $tosarticle, 'profile');
-		}
+	
 
 		foreach ($fields as $field)
 		{	
