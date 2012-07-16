@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="2.5" type="plugin" group="user">
-	<name>plg_user_profilex10d</name>
+<extension version="2.5.6" type="plugin" group="user" method="upgrade">
+	<name>plg_user_profile10</name>
 	<author>Calum Polwart, using code derived from Joomla.org</author>
 	<creationDate>July 2012</creationDate>
 	<copyright>(C) 2005 - 2012 Open Source Matters. All rights reserved. and (C) Calum Polwart 2012</copyright>
@@ -10,14 +10,15 @@
 	<version>2.5.6</version>
 	<description>PLG_USER_PROFILE_XML_DESCRIPTION</description>
 
+
 	<files>
-		<filename plugin="profilex10d">profilex10d.php</filename>
+		<filename plugin="profile10">profile10.php</filename>
 		<filename>index.html</filename>
 		<folder>profiles</folder>
 	</files>
 	<languages>
-		<language tag="en-GB">en-GB.plg_user_profilex10d.ini</language>
-		<language tag="en-GB">en-GB.plg_user_profilex10d.sys.ini</language>
+		<language tag="en-GB">en-GB.plg_user_profile10.ini</language>
+		<language tag="en-GB">en-GB.plg_user_profile10.sys.ini</language>
 	</languages>
 	<config>
 		<fields name="params">
@@ -156,6 +157,16 @@
 					<option	value="1">JOPTION_OPTIONAL</option>
 					<option	value="0">JDISABLED</option>
 				</field>
+				
+				<field name="register-require_mobile" type="list"
+	description="PLG_USER_PROFILE_FIELD_MOBILE_DESC"
+	label="PLG_USER_PROFILE_FIELD_MOBILE_LABEL"
+>
+	<option value="2">JOPTION_REQUIRED</option>
+	<option value="1">JOPTION_OPTIONAL</option>
+	<option value="0">JDISABLED</option>
+</field>
+
 
 				<field name="spacer1" type="spacer"
 					hr="true"
@@ -233,6 +244,16 @@
 					<option value="1">JOPTION_OPTIONAL</option>
 					<option value="0">JDISABLED</option>
 				</field>
+				
+				<field name="profile-require_mobile" type="list"
+
+					description="PLG_USER_PROFILE_FIELD_MOBILE_DESC"
+					label="PLG_USER_PROFILE_FIELD_MOBILE_LABEL"
+				>
+					<option value="2">JOPTION_REQUIRED</option>
+					<option value="1">JOPTION_OPTIONAL</option>
+					<option value="0">JDISABLED</option>
+				</field>
 
 				<field name="profile-require_website" type="list"
 
@@ -278,4 +299,4 @@
 
 		</fields>
 	</config>
-</extension>
+	</extension>

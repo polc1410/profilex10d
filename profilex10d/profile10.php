@@ -15,7 +15,7 @@ jimport('joomla.utilities.date');
  * @subpackage	User.profile
  * @version		2.5.6
  */
-class plgUserProfilex10d extends JPlugin
+class plgUserProfile10 extends JPlugin
 {
 	/**
 	 * Constructor
@@ -179,6 +179,7 @@ class plgUserProfilex10d extends JPlugin
 			'country',
 			'postal_code',
 			'phone',
+			'mobile',
 			'website',
 			'favoritebook',
 			'aboutme',
