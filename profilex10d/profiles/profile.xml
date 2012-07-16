@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
-	<fields name="profile10">
+	<fields name="profile">
 		<fieldset name="profile10"
 			label="PLG_USER_PROFILE_SLIDER_LABEL"
 		>
