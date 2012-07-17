@@ -113,6 +113,222 @@
 					<option	value="0">JDISABLED</option>
 				</field>
 				
+				<field
+					name="register-require_class"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_CLASS_LABEL"
+					description="PLG_USER_PROFILE_FIELD_CLASS_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="register-require_sail_no"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_SAILNO_LABEL"
+					description="PLG_USER_PROFILE_FIELD_SAILNO_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="register-require_boat_name"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_BOATNAME_LABEL"
+					description="PLG_USER_PROFILE_FIELD_BOATNAME_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="register-require_dinghy_space"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_DINGHYSPACE_LABEL"
+					description="PLG_USER_PROFILE_FIELD_DINGHYSPACE_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="register-require_RYA1"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_RYA1_LABEL"
+					description="PLG_USER_PROFILE_FIELD_RYA1_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="register-require_RYA2"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_RYA2_LABEL"
+					description="PLG_USER_PROFILE_FIELD_RYA2_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="register-require_ADI"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_ADI_LABEL"
+					description="PLG_USER_PROFILE_FIELD_ADI_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="register-require_DI"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_DI_LABEL"
+					description="PLG_USER_PROFILE_FIELD_DI_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="register-require_SDI"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_SDI_LABEL"
+					description="PLG_USER_PROFILE_FIELD_SDI_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="register-require_AWI"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_AWI_LABEL"
+					description="PLG_USER_PROFILE_FIELD_AWI_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="register-require_WI"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_WI_LABEL"
+					description="PLG_USER_PROFILE_FIELD_WI_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="register-require_SWI"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_SWI_LABEL"
+					description="PLG_USER_PROFILE_FIELD_SWI_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="register-require_PB2"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_PB2_LABEL"
+					description="PLG_USER_PROFILE_FIELD_PB2_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="register-require_safetyboat"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_SAFETYBOAT_LABEL"
+					description="PLG_USER_PROFILE_FIELD_SAFETYBOAT_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="register-require_PBInst"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_PBINSTRUCTOR_LABEL"
+					description="PLG_USER_PROFILE_FIELD_PBINSTRUCTOR_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="register-require_coach"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_COACH_LABEL"
+					description="PLG_USER_PROFILE_FIELD_COACH_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="register-require_firstaid"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_FIRSTAID_LABEL"
+					description="PLG_USER_PROFILE_FIELD_FIRSTAID_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="register-require_firstaid_instructor"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_FIRSTAIDINSTRUCTOR_LABEL"
+					description="PLG_USER_PROFILE_FIELD_FIRSTAIDINSTRUCTOR_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
 				
 				<field name="spacer1" type="spacer"
 					hr="true"
@@ -202,6 +418,222 @@
 					label="PLG_USER_PROFILE_FIELD_DOB_LABEL"
 					description="PLG_USER_PROFILE_FIELD_DOB_DESC"
 				 >
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+								<field
+					name="profile-require_class"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_CLASS_LABEL"
+					description="PLG_USER_PROFILE_FIELD_CLASS_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="profile-require_sail_no"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_SAILNO_LABEL"
+					description="PLG_USER_PROFILE_FIELD_SAILNO_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="profile-require_boat_name"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_BOATNAME_LABEL"
+					description="PLG_USER_PROFILE_FIELD_BOATNAME_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="profile-require_dinghy_space"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_DINGHYSPACE_LABEL"
+					description="PLG_USER_PROFILE_FIELD_DINGHYSPACE_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="profile-require_RYA1"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_RYA1_LABEL"
+					description="PLG_USER_PROFILE_FIELD_RYA1_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="profile-require_RYA2"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_RYA2_LABEL"
+					description="PLG_USER_PROFILE_FIELD_RYA2_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="profile-require_ADI"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_ADI_LABEL"
+					description="PLG_USER_PROFILE_FIELD_ADI_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="profile-require_DI"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_DI_LABEL"
+					description="PLG_USER_PROFILE_FIELD_DI_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="profile-require_SDI"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_SDI_LABEL"
+					description="PLG_USER_PROFILE_FIELD_SDI_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="profile-require_AWI"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_AWI_LABEL"
+					description="PLG_USER_PROFILE_FIELD_AWI_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="profile-require_WI"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_WI_LABEL"
+					description="PLG_USER_PROFILE_FIELD_WI_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="profile-require_SWI"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_SWI_LABEL"
+					description="PLG_USER_PROFILE_FIELD_SWI_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="profile-require_PB2"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_PB2_LABEL"
+					description="PLG_USER_PROFILE_FIELD_PB2_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="profile-require_safetyboat"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_SAFETYBOAT_LABEL"
+					description="PLG_USER_PROFILE_FIELD_SAFETYBOAT_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="profile-require_PBInst"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_PBINSTRUCTOR_LABEL"
+					description="PLG_USER_PROFILE_FIELD_PBINSTRUCTOR_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="profile-require_coach"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_COACH_LABEL"
+					description="PLG_USER_PROFILE_FIELD_COACH_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="profile-require_firstaid"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_FIRSTAID_LABEL"
+					description="PLG_USER_PROFILE_FIELD_FIRSTAID_DESC"
+					>
+					<option	value="2">JOPTION_REQUIRED</option>
+					<option	value="1">JOPTION_OPTIONAL</option>
+					<option	value="0">JDISABLED</option>
+				</field>
+				
+				<field
+					name="profile-require_firstaid_instructor"
+					type="list"
+
+					label="PLG_USER_PROFILE_FIELD_FIRSTAIDINSTRUCTOR_LABEL"
+					description="PLG_USER_PROFILE_FIELD_FIRSTAIDINSTRUCTOR_DESC"
+					>
 					<option	value="2">JOPTION_REQUIRED</option>
 					<option	value="1">JOPTION_OPTIONAL</option>
 					<option	value="0">JDISABLED</option>
