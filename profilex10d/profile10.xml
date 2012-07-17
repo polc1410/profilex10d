@@ -321,8 +321,8 @@
 					name="register-require_firstaid_instructor"
 					type="list"
 
-					label="PLG_USER_PROFILE_FIELD_FIRSTAIDINSTRUCTOR_LABEL"
-					description="PLG_USER_PROFILE_FIELD_FIRSTAIDINSTRUCTOR_DESC"
+					label="PLG_USER_PROFILE_FIELD_FIRSTAIDINST_LABEL"
+					description="PLG_USER_PROFILE_FIELD_FIRSTAIDINST_DESC"
 					>
 					<option	value="2">JOPTION_REQUIRED</option>
 					<option	value="1">JOPTION_OPTIONAL</option>
@@ -631,8 +631,8 @@
 					name="profile-require_firstaid_instructor"
 					type="list"
 
-					label="PLG_USER_PROFILE_FIELD_FIRSTAIDINSTRUCTOR_LABEL"
-					description="PLG_USER_PROFILE_FIELD_FIRSTAIDINSTRUCTOR_DESC"
+					label="PLG_USER_PROFILE_FIELD_FIRSTAIDINST_LABEL"
+					description="PLG_USER_PROFILE_FIELD_FIRSTAIDINST_DESC"
 					>
 					<option	value="2">JOPTION_REQUIRED</option>
 					<option	value="1">JOPTION_OPTIONAL</option>
