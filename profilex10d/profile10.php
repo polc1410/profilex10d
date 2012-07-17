@@ -30,6 +30,25 @@ class plgUserProfile10 extends JPlugin
 		parent::__construct($subject, $config);
 		$this->loadLanguage();
 		JFormHelper::addFieldPath(dirname(__FILE__) . '/fields');
+		
+		// Add some javascript and CSS to support multipage forms:
+		$filename = "formToWizard.js";
+		$path = JURI::base()."/plugins/user/profile10/scripts/";
+		JHTML::script($filename, $path);
+		
+		$path = JURI::base()."/plugins/user/profile10/style/";
+		$filename = "formProfile.css";
+		JHTML::stylesheet($filename, $path);
+
+		function multipageJS(){
+        	$javascript = "jQuery(window).ready(function() { \n";
+        	$javascript .=  "jQuery('.form-validate').formToWizard({submitButton: 'validate'}); \n";
+           	$javascript .= "});\n";
+        	return $javascript;
+        }
+        $document =& JFactory::getDocument();    
+        $document->addScriptDeclaration(multipageJS());
+
 	}
 
 	/**
@@ -47,6 +66,9 @@ class plgUserProfile10 extends JPlugin
 		{
 			return true;
 		}
+
+
+
 
 		if (is_object($data))
 		{

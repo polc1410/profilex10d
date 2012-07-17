@@ -3,8 +3,8 @@
 	<name>plg_user_profile10</name>
 	<author>Calum Polwart, using code derived from Joomla.org</author>
 	<creationDate>July 2012</creationDate>
-	<copyright>(C) 2005 - 2012 Open Source Matters. All rights reserved. and (C) Calum Polwart 2012</copyright>
-	<license>GNU General Public License version 3; see LICENSE.txt</license>
+	<copyright>(C) 2005 - 2012 Open Source Matters. All rights reserved. and (C) Calum Polwart 2012 and CC3 work by http://www.jankoatwarpspeed.com/</copyright>
+	<license>GNU General Public License version 3; see LICENSE.txt.  Includes javascript distributed under Creative Commons Attribution 3.0 Unported License.</license>
 	<authorEmail>cpolwart@chemo.org.uk</authorEmail>
 	<authorUrl>www.chemo.org.uk</authorUrl>
 	<version>2.5.6</version>
@@ -15,6 +15,8 @@
 		<filename plugin="profile10">profile10.php</filename>
 		<filename>index.html</filename>
 		<folder>profiles</folder>
+		<folder>scripts</folder>
+		<folder>style</folder>
 	</files>
 	<languages>
 		<language tag="en-GB">en-GB.plg_user_profile10.ini</language>
