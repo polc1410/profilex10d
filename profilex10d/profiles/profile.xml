@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
 	<fields name="profile">
-		<fieldset name="profile10-a"
-			label="PLG_USER_PROFILE_ADDRESS_SLIDER_LABEL"
+		<fieldset name="profile"
+			label="PLG_USER_PROFILE_SLIDER_LABEL"
 		>
 			<field
 				name="address1"
@@ -49,6 +49,17 @@
 			/>
 
 			<field
+				name="country"
+				type="text"
+				id="country"
+				description="PLG_USER_PROFILE_FIELD_COUNTRY_DESC"
+				filter="string"
+				label="PLG_USER_PROFILE_FIELD_COUNTRY_LABEL"
+				message="PLG_USER_PROFILE_FIELD_COUNTRY_MESSAGE"
+				size="30"
+			/>
+
+			<field
 				name="postal_code"
 				type="text"
 				id="postal_code"
@@ -59,10 +70,6 @@
 				size="30"
 			/>
 
-</fieldset>
-<fieldset name="profile10-b"
-			label="PLG_USER_PROFILE_FAMILY_SLIDER_LABEL"
-		>
 			<field
 				name="phone"
 				type="tel"
@@ -75,209 +82,47 @@
 			/>
 
 			<field
-				name="mobile"
-				type="tel"
-				id="mobile"
-				description="PLG_USER_PROFILE_FIELD_MOBILE_DESC"
+				name="website"
+				type="url"
+				id="website"
+				description="PLG_USER_PROFILE_FIELD_WEB_SITE_DESC"
 				filter="string"
-				label="PLG_USER_PROFILE_FIELD_MOBILE_LABEL"
-				message="PLG_USER_PROFILE_FIELD_MOBILE_MESSAGE"
+				label="PLG_USER_PROFILE_FIELD_WEB_SITE_LABEL"
+				message="PLG_USER_PROFILE_FIELD_WEB_SITE_MESSAGE"
 				size="30"
 			/>
-			
-		
+			<field
+				name="favoritebook"
+				type="text"
+				description="PLG_USER_PROFILE_FIELD_FAVORITE_BOOK_DESC"
+				filter="string"
+				label="PLG_USER_PROFILE_FIELD_FAVORITE_BOOK_LABEL"
+				message="PLG_USER_PROFILE_FIELD_FAVORITE_BOOK_MESSAGE"
+				size="30"
+			/>
+			<field
+				name="aboutme"
+				type="textarea"
+				description="PLG_USER_PROFILE_FIELD_ABOUT_ME_DESC"
+				label="PLG_USER_PROFILE_FIELD_ABOUT_ME_LABEL"
+				message="PLG_USER_PROFILE_FIELD_ABOUT_ME_MESSAGE"
+				cols="30"
+				rows="5"
+				filter="safehtml"
+			/>
 			<field
 				name="dob"
 				type="calendar"
 				label="PLG_USER_PROFILE_FIELD_DOB_LABEL"
 				description="PLG_USER_PROFILE_FIELD_DOB_DESC"
 			/>
-
-		</fieldset>
-	<fieldset name="profile10-c"
-			label="PLG_USER_PROFILE_BOAT_SLIDER_LABEL"
-		>
-					<field
-				name="class"
-				type="text"
-				id="class"
-				description="PLG_USER_PROFILE_FIELD_CLASS_DESC"
-				filter="string"
-				label="PLG_USER_PROFILE_FIELD_CLASS_LABEL"
-				message="PLG_USER_PROFILE_FIELD_CLASS_MESSAGE"
-				size="20"
-			/>
-			
 			<field
-				name="sail_no"
-				type="text"
-				id="sail_no"
-				description="PLG_USER_PROFILE_FIELD_SAILNO_DESC"
-				filter="string"
-				label="PLG_USER_PROFILE_FIELD_SAILNO_LABEL"
-				message="PLG_USER_PROFILE_FIELD_SAILNO_MESSAGE"
-				size="12"
-			/>
-			
-			<field
-				name="boat_name"
-				type="text"
-				id="boat_name"
-				description="PLG_USER_PROFILE_FIELD_BOATNAME_DESC"
-				filter="string"
-				label="PLG_USER_PROFILE_FIELD_BOATNAME_LABEL"
-				message="PLG_USER_PROFILE_FIELD_BOATNAME_MESSAGE"
-				size="30"
-			/>
-			
-			<field
-				name="dinghy_space"
-				type="text"
-				id="dinghy_space"
-				description="PLG_USER_PROFILE_FIELD_DINGHYSPACE_DESC"
-				filter="string"
-				label="PLG_USER_PROFILE_FIELD_DINGHYSPACE_LABEL"
-				message="PLG_USER_PROFILE_FIELD_DINGHYSPACE_MESSAGE"
-				size="5"
-			/>
-			
-		</fieldset>
-			<fieldset name="profile10-d"
-			label="PLG_USER_PROFILE_TRAINING_SLIDER_LABEL"
-		>
-		
-		<field
-				name="RYA1"
-				type="checkbox"
-				id="RYA1"
-				description="PLG_USER_PROFILE_FIELD_RYA1_DESC"
-				label="PLG_USER_PROFILE_FIELD_RYA1_LABEL"
-				message="PLG_USER_PROFILE_FIELD_RYA1_MESSAGE"
-				/>
-				
-		<field
-				name="RYA2"
-				type="checkbox"
-				id="RYA2"
-				description="PLG_USER_PROFILE_FIELD_RYA2_DESC"
-				label="PLG_USER_PROFILE_FIELD_RYA2_LABEL"
-				message="PLG_USER_PROFILE_FIELD_RYA2_MESSAGE"
-				/>
-				
-		<field
-				name="ADI"
-				type="checkbox"
-				id="ADI"
-				description="PLG_USER_PROFILE_FIELD_ADI_DESC"
-				label="PLG_USER_PROFILE_FIELD_ADI_LABEL"
-				message="PLG_USER_PROFILE_FIELD_ADI_MESSAGE"
-				/>
-				
-		<field
-				name="DI"
-				type="checkbox"
-				id="DI"
-				description="PLG_USER_PROFILE_FIELD_DI_DESC"
-				label="PLG_USER_PROFILE_FIELD_DI_LABEL"
-				message="PLG_USER_PROFILE_FIELD_DI_MESSAGE"
-				/>
-				
-		<field
-				name="SDI"
-				type="checkbox"
-				id="SDI"
-				description="PLG_USER_PROFILE_FIELD_SDI_DESC"
-				label="PLG_USER_PROFILE_FIELD_SDI_LABEL"
-				message="PLG_USER_PROFILE_FIELD_SDI_MESSAGE"
-				/>
-				
-		<field
-				name="AWI"
-				type="checkbox"
-				id="AWI"
-				description="PLG_USER_PROFILE_FIELD_AWI_DESC"
-				label="PLG_USER_PROFILE_FIELD_AWI_LABEL"
-				message="PLG_USER_PROFILE_FIELD_AWI_MESSAGE"
-				/>
-				
-		<field
-				name="WI"
-				type="checkbox"
-				id="WI"
-				description="PLG_USER_PROFILE_FIELD_WI_DESC"
-				label="PLG_USER_PROFILE_FIELD_WI_LABEL"
-				message="PLG_USER_PROFILE_FIELD_WI_MESSAGE"
-				/>
-				
-			
-				
-		<field
-				name="SWI"
-				type="checkbox"
-				id="SWI"
-				description="PLG_USER_PROFILE_FIELD_SWI_DESC"
-				label="PLG_USER_PROFILE_FIELD_SWI_LABEL"
-				message="PLG_USER_PROFILE_FIELD_SWI_MESSAGE"
-				/>
-				
-		<field
-				name="PB2"
-				type="checkbox"
-				id="PB2"
-				description="PLG_USER_PROFILE_FIELD_PB2_DESC"
-				label="PLG_USER_PROFILE_FIELD_PB2_LABEL"
-				message="PLG_USER_PROFILE_FIELD_PB2_MESSAGE"
-				/>
-
-		<field
-				name="safetyboat"
-				type="checkbox"
-				id="safetyboat"
-				description="PLG_USER_PROFILE_FIELD_SAFETYBOAT_DESC"
-				label="PLG_USER_PROFILE_FIELD_SAFETYBOAT_LABEL"
-				message="PLG_USER_PROFILE_FIELD_SAFETYBOAT_MESSAGE"
-				/>	
-				
-		<field
-				name="PBInst"
-				type="checkbox"
-				id="PBInst"
-				description="PLG_USER_PROFILE_FIELD_PBINSTRUCTOR_DESC"
-				label="PLG_USER_PROFILE_FIELD_PBINSTRUCTOR_LABEL"
-				message="PLG_USER_PROFILE_FIELD_PBINSTRUCTOR_MESSAGE"
-				/>	
-				
-		<field
-				name="coach"
-				type="checkbox"
-				id="coach"
-				description="PLG_USER_PROFILE_FIELD_COACH_DESC"
-				label="PLG_USER_PROFILE_FIELD_COACH_LABEL"
-				message="PLG_USER_PROFILE_FIELD_COACH_MESSAGE"
-				/>		
-				
-		<field
-				name="firstaid"
-				type="checkbox"
-				id="firstaid"
-				description="PLG_USER_PROFILE_FIELD_FIRSTAID_DESC"
-				label="PLG_USER_PROFILE_FIELD_FIRSTAID_LABEL"
-				message="PLG_USER_PROFILE_FIELD_FIRSTAID_MESSAGE"
-				/>
-		
-		<field
-				name="firstaid_instructor"
-				type="checkbox"
-				id="firstaid_instructor"
-				description="PLG_USER_PROFILE_FIELD_FIRSTAIDINST_DESC"
-				label="PLG_USER_PROFILE_FIELD_FIRSTAIDINST_LABEL"
-				message="PLG_USER_PROFILE_FIELD_FIRSTAIDINST_MESSAGE"
-				/>		
-				
-		</fieldset>
-			<fieldset name="profile10-e"
-			label="PLG_USER_PROFILE_FLEETS_SLIDER_LABEL"
-		>
+				name="tos"
+				type="tos"
+				label="PLG_USER_PROFILE_FIELD_TOS_LABEL"
+				description="PLG_USER_PROFILE_FIELD_TOS_DESC">
+				<option value="1">PLG_USER_PROFILE_OPTION_AGREE</option>
+			</field>
 		</fieldset>
 	</fields>
 </form>
