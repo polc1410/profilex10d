@@ -1,0 +1,464 @@
+
+
+
+
+
+
+<script type="text/javascript">
+
+			jQuery(window).ready(function() { 
+      		jQuery('.jotform-form').formToWizard({ submitButton: 'register' }); 
+           })
+
+
+var counter = 2;
+var boatCounter = 1;
+var limit = 200;
+var space = " ";
+var classPromptResponse = "";
+function addInput(divName, selectionType, value){
+     if (counter == limit)  {
+          alert("You have reached the limit of adding " + counter + " inputs");
+     }
+     else {
+          var newdiv = document.createElement('div');
+          var htmlResult = null;
+          switch (divName ) {
+          
+         case "dynamicInputMembers": 
+          htmlResult = '<table id="memberTable'+counter+'"> <tr> 	<td><input type="text" name="jform[profile][firstname'+counter+']" id="jform_profile_firstname'+counter+'" onblur="this.form.Name_Skills'+counter+'.value=this.form.jform_profile_firstname'+counter+'.value.concat(space,this.form.jform_profile_lastname'+counter+'.value);this.form.Name_News'+counter+'.value=this.form.Name_Skills'+counter+'.value"/></td> 	<td><input type="text" name="jform[profile][lastname'+counter+']" id="jform_profile_lastname'+counter+'" onblur="this.form.Name_Skills'+counter+'.value=this.form.jform_profile_firstname'+counter+'.value.concat(space,this.form.jform_profile_lastname'+counter+'.value);this.form.Name_News'+counter+'.value=this.form.Name_Skills'+counter+'.value;" /></td><td><input class="formInfo" src="<?PHP echo JURI::base(); ?>media/profile10/images/duplicate.png" alt="Use Previous" type="image", onclick="this.form.jform_profile_email'+counter+'.value=this.form.jform_profile_email1.value;return false;"></td><td><input type="email" name="jform[profile][email'+counter+']" id="jform_profile_email'+counter+'" /></td> <td><input type="date" name="jform[profile][dob'+counter+']" id="jform_profile_dob'+counter+'" /></td> <td><input type="phone" name="jform[profile][mobile'+counter+']" id="jform_profile_mobile'+counter+'" /></td> <td><div class="form-cell" style="white-space:nowrap; "><input type="image" src="<?PHP echo JURI::base(); ?>media/profile10/images/delete.png" onclick="deleteRow(\'memberTable'+counter+'\'); deleteRow(\'skillsTable'+counter+'\'); deleteRow(\'newsTable'+counter+'\');updateBasket(-'+value+');return false;"/><input type="text" class="formInfo" name="jform[profile][membertype'+counter+']" id="jform_profile_membertype'+counter+'"  value ="'+selectionType+'" readonly="true" /></div></td></tr></table>';
+          	
+			
+			 break;
+			case "dynamicInputBoats":
+			if (selectionType =="Space") {
+			 htmlResult = "<table id='boatTable"+boatCounter+"'><tr><td><div class='form-cell'><input type='text' name='SailNo' /><label class='form-sub-label'> Sail Number</label></div></td><td><div class='form-cell'><select name='Class"+boatCounter+"' id='Class"+boatCounter+"' onchange='promptOther(this.form.Class"+boatCounter+".value, \"Class"+boatCounter+"\");' /><option>Windsurf</option><option>Flying Fifteen</option><option>RS200</option><option>Laser</option><option>GP14</option><option>Topper</option><option>Topaz</option><option>Mirror</option> <option>Optimist</option> <option>Other...</option></select><label class='form-sub-label'>Class</label></div></td><td><div class='form-cell'><input type='text' name='BoatName' /><label class='form-sub-label'>Boat Name</label></div></td><td ><div class='form-cell' style='white-space:nowrap; '><input type='text' name='DinghySpace' style='width:4em; background: grey;' readonly='true'/><input type='image' src='<?PHP echo JURI::base(); ?>media/profile10/images/dpark.png' alt='Select Space' onclick='return false;' /><label class='form-sub-label'>Dinghy Space</label></div><input type='image' src='<?PHP echo JURI::base(); ?>media/profile10/images/delete.png' onclick='deleteRow(\"boatTable"+boatCounter+"\");updateBasket(-"+value+");return false;'/></td></tr></table>";
+			 }
+			 else {
+			 			 htmlResult = "<table id='boatTable"+boatCounter+"'><tr><td><div class='form-cell'><input type='text' name='SailNo' /><label class='form-sub-label'> Sail Number</label></div></td><td><div class='form-cell'><select name='Class"+boatCounter+"' id='Class"+boatCounter+"' onchange='promptOther(this.form.Class"+boatCounter+".value, \"Class"+boatCounter+"\");' /><option>Windsurf</option><option>Flying Fifteen</option><option>RS-200</option><option>Laser</option><option>GP-14</option><option>Topper</option><option>Topaz</option><option>Mirror</option> <option>Optimist</option> <option>Other...</option></select><label class='form-sub-label'>Class</label></div></td><td><div class='form-cell'><input type='text' name='BoatName' /><label class='form-sub-label'>Boat Name</label></div></td><td ><input type='image' src='<?PHP echo JURI::base(); ?>media/profile10/images/delete.png' onclick='deleteRow(\"boatTable"+boatCounter+"\");updateBasket(-"+value+");return false;'/></td></tr></table>";
+			 }
+			 break;
+
+       
+			 case "dynamicInputSkills":
+			 htmlResult = '<div class="field-group" id="skillsTable'+counter+'"> <div class="form-row"> 	<div class="formSkills-member"><input class="formInfo" type="text" name="Name_Skills'+counter+'" readonly="true" /></div>	<div class="formSkills-cell"><input type="checkbox" name="RYA1"/></div> 	<div class="formSkills-cell"><input type="checkbox" name="RYA2"/></div> 	<div class="formSkills-cell"><input type="checkbox" id="ADI'+counter+'" name="ADI" onchange="setNews(\'Instructor\','+counter+', this.form.ADI'+counter+'.checked);"/></div> 	<div class="formSkills-cell"><input id="DI'+counter+'" type="checkbox" name="DI"onchange="setNews(\'Instructor\','+counter+', this.form.DI'+counter+'.checked);"/></div> 	<div class="formSkills-cell"><input type="checkbox" name="SDI" id="SDI'+counter+'" onchange="setNews(\'Instructor\','+counter+', this.form.SDI'+counter+'.checked);"/></div> 	<div class="formSkills-cell"><input type="checkbox" name="AWI" id="AWI'+counter+'" onchange="setNews(\'Instructor\','+counter+', this.form.AWI'+counter+'.checked);"/></div> 	<div class="formSkills-cell"><input type="checkbox" name="WI" id="WI'+counter+'" onchange="setNews(\'Instructor\','+counter+', this.form.WI'+counter+'.checked);"/></div> <div class="formSkills-cell"><input type="checkbox" name="SWI" id="SWI'+counter+'" onchange="setNews(\'Instructor\','+counter+', this.form.SWI'+counter+'.checked);"/></div> <div class="formSkills-cell"><input type="checkbox" name="PB2"/></div> <div class="formSkills-cell"><input type="checkbox" name="safetyboat"/></div> <div class="formSkills-cell"><input type="checkbox" name="PBInst" id="PBInst'+counter+'" onchange="setNews(\'Instructor\','+counter+', this.form.PBInst'+counter+'.checked);"/></div> <div class="formSkills-cell"><input type="checkbox" name="coach" id="coach'+counter+'"/></div> <div class="formSkills-cell"><input type="checkbox" name="firstaid"/></div> <div class="formSkills-cell"><input type="checkbox" name="firstaid_instructor" id="firstaid_instructor'+counter+'" onchange="setNews(\'Instructor\','+counter+', this.form.firstaid_instructor'+counter+'.checked);"/></div> 	</div> </dive>';
+			
+			 break;
+			 
+			  case "dynamicInputNews":
+			 htmlResult = '<div class="field-group" id="newsTable'+counter+'"> <div class="form-row"> 	<div class="formSkills-member"><input class="formInfo" type="text" name="Name_News'+counter+'" readonly="true" /></div> 	<div class="formSkills-cell"><input type="checkbox" name="GenNews" checked="checked"/></div> 	<div class="formSkills-cell"><input type="checkbox" name="JuniorNews" id="JuniorSailing'+counter+'"/></div> 	<div class="formSkills-cell"><input type="checkbox" name="Team15" id="JuniorWindsurfing'+counter+'"/></div> 	<div class="formSkills-cell"><input type="checkbox" name="Windsurf" id="Windsurf'+counter+'"/></div> 	<div class="formSkills-cell"><input type="checkbox" name="Perf"/></div> 	<div class="formSkills-cell"><input type="checkbox" name="F15" id="FlyingFifteen'+counter+'"/></div> 	<div class="formSkills-cell"><input type="checkbox" name="RS200" id="RS-200'+counter+'"/></div> <div class="formSkills-cell"><input type="checkbox" name="Laser" id="Laser'+counter+'"/></div> <div class="formSkills-cell"><input type="checkbox" name="GP14" id="GP14'+counter+'"/></div> <div class="formSkills-cell"><input type="checkbox" name="Topper" id="Topper'+counter+'"/></div> <div class="formSkills-cell"><input type="checkbox" name="Topaz" id="Topaz'+counter+'"/></div> <div class="formSkills-cell"><input type="checkbox" name="Mirror" id="Mirror'+counter+'"/></div> <div class="formSkills-cell"><input type="checkbox" name="Optimist" id="Optimist'+counter+'"/></div> <div class="formSkills-cell"><input type="checkbox" name="Handicap" id="Handicap'+counter+'"/></div> <div class="formSkills-cell"><input id="Instructor'+counter+'" type="checkbox" name="Instructor"/></div> 	</div> 	</div>';
+			 break;
+			 
+			 default:
+			 htmlResult = "<P>An error occurred</p>";		
+			 break ;	
+				}
+			 
+			 newdiv.innerHTML = htmlResult;			
+          document.getElementById(divName).appendChild(newdiv);
+          updateBasket (value);
+          if (divName=="dynamicInputMembers"){
+				addInput("dynamicInputSkills","",0)   
+				addInput("dynamicInputNews","",0)  
+				counter ++;       
+          } 
+           if (divName=="dynamicInputBoats"){
+				boatCounter ++;       
+          } 
+          
+          if (selectionType =="Child") {
+				setNews("JuniorSailing", "all", true) ;        
+				setNews("JuniorWindsurfing", "all", true) ;  
+          }
+       
+     }
+}
+function updateBasket(extraValue){
+field = document.getElementById('Basket')
+basketValue = parseFloat( field.value );
+basketValue += extraValue;
+field.value = basketValue.toFixed(2)
+}
+
+function deleteRow(rowName) {
+div = document.getElementById(rowName)
+div.parentNode.removeChild(div);
+}
+
+function promptOther(selection, selMenu) {
+Menu = selMenu;
+
+if (selection == "Other..."){
+	ModalPopups.Prompt("idPrompt1",  
+            "Other Class...",  
+            "Please enter the name of your boat class:",    
+            {  
+                width: 300,  
+                height: 100,  
+                onOk: "ModalPopupsPromptOk(Menu)",  
+                onCancel: "ModalPopupsPromptCancel()"  
+            }  
+        ); 
+   setNews("Handicap", "all", true);
+} else {
+	setNews(selection, "all", true);
+}
+}
+
+function setNews(field, row, state) {
+if (isNaN(row)) {
+ for (r=1; r<counter; r++)
+	document.getElementById(field.concat(r)).checked = state;
+} else {
+	document.getElementById(field.concat(row)).checked = state;
+}
+}
+function ModalPopupsPrompt() {  
+        
+    }  
+    function ModalPopupsPromptOk(selMenu)  
+    {  
+    Menu = selMenu;
+        if(ModalPopups.GetPromptInput("idPrompt1").value == "") {  
+            ModalPopups.GetPromptInput("idPrompt1").focus();  
+            return;  
+        } 
+        classPromptResponse = ModalPopups.GetPromptInput("idPrompt1").value;  
+        
+        var select = document.getElementById(Menu);
+	var option=document.createElement("option");
+	option.text=classPromptResponse;
+	option.selected=true;
+	try
+ 	{
+ 	 // for IE earlier than version 8
+ 	 select.add(option,select.options[null]);
+ 	 }
+	catch (e)
+ 	 {
+	  select.add(option,null);
+	 }
+        ModalPopups.Close("idPrompt1");  
+        return ;
+    }  
+    function ModalPopupsPromptCancel() {  
+       ModalPopups.Cancel("idPrompt1");  
+    }  
+
+</script>
+
+
+
+ </DIV>
+<form class="jotform-form" method="POST" name ="" action="<?php echo  JRoute::_( 'index.php?option=com_acctexp' ) ; ?>">
+
+	<div class="Cart"><img src="<?PHP echo JURI::base(); ?>media/profile10/images/shopping_cart.png" height="16px" width = "16px"/>
+		<div class="form-cell" style="white-space: nowrap;">Current value: &pound;<input name="Basket" id="Basket" value="0.00" class="formInfo" />
+		</div>
+	</div>
+	<fieldset>
+		<legend>Contact Info</legend>
+	 	<div class="form-all">
+    		<div class="field-group">
+     			<div class="form-row">
+     				<div class="form-cell">
+        			<label class="form-label-left" id="label_4" for="input_4">
+          			Full Name:<span class="form-required">*</span><br />
+        			</label>
+        			</div>
+
+       			<div class="form-cell">
+						<input class="form-textbox validate[required]" type="text" size="10" name="jform[firstname]" id="jform_firstname" onblur="this.form.jform_profile_firstname1.value=this.form.jform_firstname.value;this.form.Name_Skills.value=this.form.jform_firstname.value+' '+this.form.jform_lastname.value;this.form.Name_News.value=this.form.Name_Skills.value;this.form.jform_name.value=this.form.Name_Skills.value;"/>
+       				<label class="form-sub-label" id="sublabel_first"> First Name </label>
+       			</div>
+       
+       			<div class="form-cell">
+       				<input class="form-textbox validate[required]" type="text" size="15" name="jform[lastname]" id="jform_lastname" onblur="this.form.jform_profile_lastname1.value=this.form.jform_lastname.value;this.form.Name_Skills.value=this.form.jform_firstname.value+' '+this.form.jform_lastname.value;this.form.Name_News.value=this.form.Name_Skills.value;this.form.jform_name.value=this.form.Name_Skills.value;" />
+       				<label class="form-sub-label" for="last_4" id="sublabel_last"> Last Name </label>
+       			</div>
+       		</div>
+
+       	</div>
+       	<div class="field-group">
+     			<div class="form-row">
+     				<div class="form-cell">
+        				<label class="form-label-left" id="label_5" for="input_5">
+          				E-mail:<span class="form-required">*</span>
+        				</label>
+        			</div>
+        					
+	     			<div class="form-cell">
+          			<input type="email" class="form-textbox validate[required, Email]" id="jform_email1" name="jform[email1]" size="30" onblur="this.form.jform_profile_email1.value=this.form.jform_email1.value;" />
+     				</div>
+     			</div>
+
+     			<div class="form-row">
+     				<div class="form-cell">
+        				<label class="form-label-left" id="label_5" for="input_5">
+          				Confirm&nbsp;E-mail:<span class="form-required">*</span>
+        				</label>
+        			</div>
+
+			      <div class="form-cell">
+          			<input type="email" class="form-textbox validate[Email_Confirm]" id="jform_email2" name="jform[email2]"  size="30" />
+        			</div>
+        		</div>
+        	</div>
+
+         <div class="field-group">
+     			<div class="form-row">
+     				<div class="form-cell">
+        				<label class="form-label-left" id="label_6" for="input_6">
+          				Web&nbsp;Username:<span class="form-required">*</span>
+        				</label>
+        			</div>
+        					
+        			<div class="form-cell">
+        				<div id="cid_6" class="form-input">
+          				<input type="text" class="form-textbox validate[required]" id="jform_username" name="jform[username]" size="20" />
+   	     			</div>
+      	  		</div>
+	
+   	      </div>
+   	      <div class="form-row">
+     				<div class="form-cell">
+        				<label class="form-label-left" id="label_6" for="input_6">
+          				Password:<span class="form-required">*</span>
+        				</label>
+        			</div>
+        
+    	    		<div class="form-cell">
+      	  			<div id="cid_6" class="form-input">
+         	 			<input type="password" class="form-textbox validate[required]" id="jform_password1" name="jform[password1]" size="20" />
+        				</div>
+        			</div>
+  	      	</div>
+        
+   	     	<div class="form-row">
+     				<div class="form-cell">
+        				<label class="form-label-left" id="label_6" for="input_6">
+          				Confirm&nbsp;Password:<span class="form-required">*</span>
+        				</label>
+        			</div>
+        
+     	   		<div class="form-cell">
+      	  			<div id="cid_6" class="form-input">
+         	 			<input type="password" class="form-textbox validate[required]" id="jform_password2" name="jform[password2]" size="20" />
+        				</div>
+        			</div>
+    	    	</div>
+      	</div>
+      
+ 
+ 		<div class="field-group">
+     		<div class="form-row">
+        		<div class="form-cell" style="vertical-align:top;}">
+        			<label class="form-label-left" id="label_9" for="input_9" > Address: </label>
+        		</div>
+        		<div class="form-cell">
+              		<input class="form-textbox form-address-line" type="text" name="jform[profile][address1]" id="jform_profile_address1" style="width: 302px;" value="<?php echo $data->profile['address1']; ?>"/>
+                  <label class="form-sub-label"> Street Address </label>
+            </div>
+       	</div>
+       	<div class="form-row">
+       		<div class="form-cell">
+       		</div>
+       		<div class="form-cell">
+            		<input class="form-textbox form-address-line" type="text" name="jform[profile][address2]" id="jform_profile_address2" style="width: 302px;" value="<?php echo $data->profile['address2']; ?>" />
+                  <label class="form-sub-label" for="input_9_addr_line2" id="sublabel_addr_line2"> Street Address Line 2 </label>
+            </div>
+         </div>
+       	<div class="form-row">
+       		<div class="form-cell"></div>
+            <div class="form-cell">
+             		<input class="form-textbox form-address-city" type="text" name="jform[profile][city]" id="jform_profile_city" size="21" value="<?php echo $data->profile['city']; ?>"/>
+                  <label class="form-sub-label" for="input_9_city" id="sublabel_city"> City </label>
+            </div>   
+            <div class="form-cell">
+           			<input class="form-textbox form-address-state" type="text" name="jform[profile][county]" id="jform_profile_county" size="22" value="<?php echo $data->profile['county']; ?>"/>                  <label class="form-sub-label" for="input_9_state" id="sublabel_state"> County </label>
+            </div>
+         </div>
+       	<div class="form-row">
+       		<div class="form-cell"></div>
+            <div class="form-cell">
+						<input class="form-textbox form-address-postal" type="text" name="jform[profile][postcode]" id="jform_profile_postcode" size="10" value="<?php echo $data->profile['postcode']; ?>"/>
+                  <label class="form-sub-label" for="input_9_postal" id="sublabel_postal"> Postal Code </label>
+            </div>
+            <div class="form-cell">
+					&nbsp;              
+             	<select class="form-dropdown form-address-country" name="jform[profile][country]" id="jform_profile_country" value="<?php echo $data->profile['country']; ?>">
+                    <option selected="selected" value="United Kingdom"> United Kingdom </option>
+               </select>
+               <label class="form-sub-label" for="input_9_country" id="sublabel_country"> Country </label>
+             </div>
+         </div>
+        </div>
+        </div>  
+	</fieldset>
+	<fieldset>
+		<legend>Extra Member Info</legend>
+	 	<div class="form-all">
+	 		<p>There are a few extra pieces of information that would be helpful to us.  In the future we may wish to use SMS (Text Messaging) to keep in touch with members.  We respect your privacy and will never share this information outside the club.</p>
+	 		<p>If you wish to apply for family membership or wish to add an additional member <strong>who lives at the same address</strong> please sleect the appropriate type of member below and complete the member's details.</p>
+			<div class="field-group">
+				<table class="form-table">
+					<thead>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th><img src="blank.png" alt="" ></th>
+						<th>Email</th>
+						<th>Date of Birth</th>
+						<th>Mobile Tel</th>
+						<th></th>
+					</thead>
+					<?php
+					for ($row=1; $row<=LOOP_COUNTER; $row++) {
+					if ($row == 1 || $data->profile['membertype'.$row ] != "") {
+					echo '<tr>';
+						echo '<td><input class="formInfo" type="text" name="jform[profile][firstname'.$row.']" id="jform_profile_firstname'.$row.'" readonly="true" value="'.$data->profile["firstname".$row].'"/></td>';
+						echo '<td><input class="formInfo" type="text" name="jform[profile][lastname'.$row.']" id="jform_profile_lastname'.$row.'" readonly="true" value="'.$data->profile["lastname".$row].'"/></td>';
+						echo '<td></td>';
+						echo '<td><input class="formInfo" type="email" name="jform[profile][email'.$row.']" id="jform_profile_email'.$row.'" readonly="true" value="'.$data->profile["email".$row].'"/></td>';
+						echo '<td><input type="date" name="jform[profile][dob'.$row.']" id="jform_profile_dob'.$row.'" value="'.$data->profile["dob".$row].'"/></td>';
+						echo '<td><input type="phone" name="jform[profile][mobile'.$row.']" id="jform_profile_mobile'.$row.'" value="'.$data->profile["mobile".$row].'"/></td>';
+						echo '<td><input class="formInfo" type="text" readonly="true" name="jform[profile][membertype'.$row.']" id="jform_profile_membertype'.$row.'" value="'.$data->profile["membertype".$row].'"/></td>';
+					echo '</tr>';
+					} 					
+					}
+					?>
+				</table>
+				<div id="dynamicInputMembers">
+
+				</div>
+
+				<input type="button" value="Add a sailing adult" onClick="addInput('dynamicInputMembers','Adult',110);">
+				<input type="button" value="Add a non-sailing adult" onClick="addInput('dynamicInputMembers','NonSailing',45);">
+				<input type="button" value="Add a child" onClick="addInput('dynamicInputMembers','Child',45);">
+				<input type="button" value="Add a student" onClick="addInput('dynamicInputMembers','Student',45);">
+				<input type="button" value="Add a veteran" onClick="addInput('dynamicInputMembers','Veteran', 70)">
+			</div>
+
+		</div>
+	</fieldset>
+	<fieldset>
+		<legend>
+			Boat Details
+		</legend>
+	 	<div class="form-all">
+	 		<p>If you have a boat or windsurf, please tell us about it here.  If you intend to keep it in the dinghy park you will need to be allocated a dinghy park space for a small fee.</p>
+			<div class="field-group">
+				<div id="dynamicInputBoats">
+
+				</div>
+				<input type="button" value="Add a Boat with Dinghy Space (&pound;10)" onClick="addInput('dynamicInputBoats','Space',10);">
+				<input type="button" value="Add a Boat with out Dinghy Space (Free)" onClick="addInput('dynamicInputBoats','NoSpace',0);">
+			</div>
+		</div>	
+	</fieldset>	
+	<fieldset>
+		<legend>
+			Training &amp; Skills
+		</legend>
+		<div class="form-all">
+			<p>We'd like to know about your existign sailing skills so that we can help you get sailing with the club as quickly as possible.  Please let us know if you have any of the following qualifications.</p>
+			<div class="field-group">
+				<div class="form-row">
+					<div class="formSkills-member">Member</div>
+					<div class="formSkills-cell">RYA1</div>
+					<div class="formSkills-cell">RYA2</div>
+					<div class="formSkills-cell">Asst Dinghy Instruct</div>
+					<div class="formSkills-cell">Dinghy Instruct</div>
+					<div class="formSkills-cell">Senior Dinghy Instruct</div>
+					<div class="formSkills-cell">Asst Windsurf Instruct</div>
+					<div class="formSkills-cell">Windsurf Instruct</div>
+					<div class="formSkills-cell">Senior Windsurf Instruct</div>
+					<div class="formSkills-cell">P'Boat 2</div>
+					<div class="formSkills-cell">Safety Boat</div>	
+					<div class="formSkills-cell">P'Boat Instruct</div>
+					<div class="formSkills-cell">RYA Coach</div>
+					<div class="formSkills-cell">First Aid</div>
+					<div class="formSkills-cell">First Aid Instruct</div>
+				</div>
+			</div>
+			<div class="field-group">
+				<div class="form-row">
+					<div class="formSkills-member"><input class="formInfo" type="text" name="Name_Skills" readonly="true" /></div>
+					<div class="formSkills-cell"><input type="checkbox" name="RYA1"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="RYA2"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="ADI" id="ADI1" onchange="setNews('Instructor',1, this.form.ADI1.checked);"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="DI"id="DI1" onchange="setNews('Instructor',1, this.form.DI1.checked);"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="SDI"id="SDI1" onchange="setNews('Instructor',1, this.form.SDI.checked);"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="AWI"id="AWI1" onchange="setNews('Instructor',1, this.form.AW1.checked);"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="WI"id="WI1" onchange="setNews('Instructor',1, this.form.WI1.checked);"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="SWI"id="SWI1" onchange="setNews('Instructor',1, this.form.SWI1.checked);"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="PB2"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="safetyboat"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="PBInst"id="PBInst1"onchange="setNews('Instructor',1, this.form.PBInst1.checked);"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="coach"id="coach1" onchange="setNews('Instructor',1, this.form.coach1.checked);"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="firstaid"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="firstaid_instructor"id="firstaid_instructor1" onchange="setNews('Instructor',1, this.form.firstaid_instructor1.checked);"/></div>
+				</div>
+			</div>
+			<div id="dynamicInputSkills">
+
+			</div>
+		</div>
+	</fieldset>
+	<fieldset>
+		<legend>
+			Keeping in Touch
+		</legend>
+		<div class="form-all">
+			<p>Keeping in Touch with our membership is important to us, but we also respect your right to privacy and would like to allow you to restrict the amount of email you receive from us.  We will never share your email/phone number lists with anyone outside of the club (unless legally obliged to do so).  If you'd like to receive email updates about specifc areas of the club please select the appropraite options below.  We wouldn't expect you to receive more than 1 or 2 emails from each list per week.</p>
+			<div class="field-group">
+				<div class="form-row">
+
+					<div class="formSkills-member">Member</div>
+					<div class="formSkills-cell">General News</div>
+					<div class="formSkills-cell">Junior Sailing</div>
+					<div class="formSkills-cell">Junior Windsurf [Team15]</div>
+					<div class="formSkills-cell">Windsurf Fleet</div>
+					<div class="formSkills-cell">Perf' Fleet</div>
+					<div class="formSkills-cell">Flying Fifteen Fleet</div>
+					<div class="formSkills-cell">RS-200 Fleet</div>
+					<div class="formSkills-cell">Laser Fleet</div>
+					<div class="formSkills-cell">GP-14 Fleet</div>
+					<div class="formSkills-cell">Topper Fleet</div>
+					<div class="formSkills-cell">Topaz Fleet</div>
+					<div class="formSkills-cell">Mirror Fleet</div>
+					<div class="formSkills-cell">Optimist Fleet</div>
+					<div class="formSkills-cell">Handicap Fleet</div>
+					<div class="formSkills-cell">RYA Instructor</div>
+				</div>
+			</div>
+			<div class="field-group">
+				<div class="form-row">
+					<div class="formSkills-member"><input class="formInfo" type="text" name="Name_News" readonly="true" /></div>
+					<div class="formSkills-cell"><input type="checkbox" name="GenNews" checked="checked"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="JuniorNews" id="JuniorSailing1"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="Team15" id="JuniorWindsurfing1"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="Windsurf" id="Windsurf1"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="Perf" id="Performance"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="F15" id="Flying Fifteen1"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="RS200" id="RS2001"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="Laser" id="Laser1"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="GP14" id="GP141"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="Topper" id="Topper1"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="Topaz" id="Topaz1"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="Mirror" id="Mirror1"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="Optimist" id="Optimist1"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="Handicap" id="Handicap1"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="Instructor" id="Instructor1"/></div>
+				</div>
+			</div>
+			<div id="dynamicInputNews">
+
+			</div>
+		</div>
+
+		<P>If you are happy with the information you have completed so far please click the Submit Button to be taken to our secure payment gateway.</p>
+			<input type="hidden" name="jform[name]" id="jform_name" />
+	</fieldset>
+			<input type="submit" name="register" value="Register" id="register" class="register"/>
+
+<div>
