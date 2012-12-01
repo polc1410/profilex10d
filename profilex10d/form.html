@@ -68,10 +68,10 @@ function addInput(divName, selectionType, value){
 			 break;
 			case "dynamicInputBoats":
 			if (selectionType =="Space") {
-			 htmlResult = "<table id='boatTable"+boatCounter+"'><tr><td><div class='form-cell'><input type='text' name='SailNo' /><label class='form-sub-label'> Sail Number</label></div></td><td><div class='form-cell'><select name='Class"+boatCounter+"' id='Class"+boatCounter+"' onchange='promptOther(this.form.Class"+boatCounter+".value, \"Class"+boatCounter+"\");' /><option>Windsurf</option><option>Flying Fifteen</option><option>RS200</option><option>Laser</option><option>GP14</option><option>Topper</option><option>Topaz</option><option>Mirror</option> <option>Optimist</option> <option>Other...</option></select><label class='form-sub-label'>Class</label></div></td><td><div class='form-cell'><input type='text' name='BoatName' /><label class='form-sub-label'>Boat Name</label></div></td><td ><div class='form-cell' style='white-space:nowrap; '><input type='text' name='DinghySpace' style='width:4em; background: grey;' readonly='true'/><input type='image' src='<?PHP echo JURI::base(); ?>media/profile10/images/dpark.png' alt='Select Space' onclick='return false;' /><label class='form-sub-label'>Dinghy Space</label></div><input type='image' src='<?PHP echo JURI::base(); ?>media/profile10/images/delete.png' onclick='deleteRow(\"boatTable"+boatCounter+"\");updateBasket(-"+value+");return false;'/></td></tr></table>";
+			 htmlResult = "<table id='boatTable"+boatCounter+"'><tr><td><div class='form-cell'><input type='text' name='SailNo' /><label class='form-sub-label'> Sail Number</label></div></td><td><div class='form-cell'><select name='Class"+boatCounter+"' id='Class"+boatCounter+"' onchange='promptOther(this.form.Class"+boatCounter+".value, \"Class"+boatCounter+"\");' /><option>Windsurf</option><option>Flying Fifteen</option><option>RS200</option><option>Laser</option><option>GP14</option><option>Topper</option><option>Topaz</option><option>Mirror</option> <option>Optimist</option> <option>RS Tera</option> <option>Other...</option></select><label class='form-sub-label'>Class</label></div></td><td><div class='form-cell'><input type='text' name='BoatName' /><label class='form-sub-label'>Boat Name</label></div></td><td ><div class='form-cell' style='white-space:nowrap; '><input type='text' name='DinghySpace' style='width:4em; background: grey;' readonly='true'/><input type='image' src='<?PHP echo JURI::base(); ?>media/profile10/images/dpark.png' alt='Select Space' onclick='return false;' /><label class='form-sub-label'>Dinghy Space</label></div><input type='image' src='<?PHP echo JURI::base(); ?>media/profile10/images/delete.png' onclick='deleteRow(\"boatTable"+boatCounter+"\");updateBasket(-"+value+");return false;'/></td></tr></table>";
 			 }
 			 else {
-			 			 htmlResult = "<table id='boatTable"+boatCounter+"'><tr><td><div class='form-cell'><input type='text' name='SailNo' /><label class='form-sub-label'> Sail Number</label></div></td><td><div class='form-cell'><select name='Class"+boatCounter+"' id='Class"+boatCounter+"' onchange='promptOther(this.form.Class"+boatCounter+".value, \"Class"+boatCounter+"\");' /><option>Windsurf</option><option>Flying Fifteen</option><option>RS-200</option><option>Laser</option><option>GP-14</option><option>Topper</option><option>Topaz</option><option>Mirror</option> <option>Optimist</option> <option>Other...</option></select><label class='form-sub-label'>Class</label></div></td><td><div class='form-cell'><input type='text' name='BoatName' /><label class='form-sub-label'>Boat Name</label></div></td><td ><input type='image' src='<?PHP echo JURI::base(); ?>media/profile10/images/delete.png' onclick='deleteRow(\"boatTable"+boatCounter+"\");updateBasket(-"+value+");return false;'/></td></tr></table>";
+			 			 htmlResult = "<table id='boatTable"+boatCounter+"'><tr><td><div class='form-cell'><input type='text' name='SailNo' /><label class='form-sub-label'> Sail Number</label></div></td><td><div class='form-cell'><select name='Class"+boatCounter+"' id='Class"+boatCounter+"' onchange='promptOther(this.form.Class"+boatCounter+".value, \"Class"+boatCounter+"\");' /><option>Windsurf</option><option>Flying Fifteen</option><option>RS-200</option><option>Laser</option><option>GP-14</option><option>Topper</option><option>Topaz</option><option>Mirror</option> <option>Optimist</option> <option>RS Tera</option> <option>Other...</option></select><label class='form-sub-label'>Class</label></div></td><td><div class='form-cell'><input type='text' name='BoatName' /><label class='form-sub-label'>Boat Name</label></div></td><td ><input type='image' src='<?PHP echo JURI::base(); ?>media/profile10/images/delete.png' onclick='deleteRow(\"boatTable"+boatCounter+"\");updateBasket(-"+value+");return false;'/></td></tr></table>";
 			 }
 			 break;
 
@@ -346,7 +346,7 @@ function ModalPopupsPrompt() {
 					<thead>
 						<th>First Name</th>
 						<th>Last Name</th>
-						<th><img src=<?php echo '"'.JPATH_BASE . '/media/plugins/profile10/images/blank.png'" alt="" ></th>
+						<th><img src=<?php echo '"'.JPATH_BASE . '/media/plugins/profile10/images/blank.png"'; ?> alt="" ></th>
 						<th>Email</th>
 						<th>Date of Birth</th>
 						<th>Mobile Tel</th>
@@ -411,6 +411,7 @@ function ModalPopupsPrompt() {
 		</legend>
 	 	<div class="form-all">
 	 		<p>If you have a boat or windsurf, please tell us about it here.  If you intend to keep it in the dinghy park you will need to be allocated a dinghy park space for a small fee.</p>
+			<p class="notice">If you park your boat in a dinghy park space without recording the space in the memebrship database (here), your boat may be moved without warning by the club.  <br />In addition if you leave a boat in the dinghy park after failing to renew your membership the club may claim ownership of the boat and then sell it on.</p>
 			<div class="field-group">
 				<div id="dynamicInputBoats">
 
@@ -419,7 +420,7 @@ function ModalPopupsPrompt() {
 				$key = searchForId('dinghy', $plans);
 				echo '<input type="button" value="Add a Boat/Windsurf with Dinghy Space £'.$plans[$key][price].'" onClick="addInput(\'dynamicInputBoats\',\'Space\','.$plans[$key][price].')">';
 				?>
-				<input type="button" value="Add a Boat with out Dinghy Space (Free)" onClick="addInput('dynamicInputBoats','NoSpace',0);">
+				<input type="button" value="Add a Boat/Windsurf with out Dinghy Space (Free)" onClick="addInput('dynamicInputBoats','NoSpace',0);">
 			</div>
 		</div>	
 	</fieldset>	
@@ -484,19 +485,20 @@ function ModalPopupsPrompt() {
 					<div class="formSkills-member">Member</div>
 					<div class="formSkills-cell">General News</div>
 					<div class="formSkills-cell">Junior Sailing</div>
-					<div class="formSkills-cell">Junior Windsurf [Team15]</div>
-					<div class="formSkills-cell">Windsurf Fleet</div>
-					<div class="formSkills-cell">Perf' Fleet</div>
+					<div class="formSkills-cell">Junior Windsurf Team15</div>
 					<div class="formSkills-cell">Flying Fifteen Fleet</div>
-					<div class="formSkills-cell">RS-200 Fleet</div>
-					<div class="formSkills-cell">Laser Fleet</div>
 					<div class="formSkills-cell">GP-14 Fleet</div>
-					<div class="formSkills-cell">Topper Fleet</div>
-					<div class="formSkills-cell">Topaz Fleet</div>
+					<div class="formSkills-cell">Handicap Fleet</div>
+					<div class="formSkills-cell">Laser Fleet</div>
 					<div class="formSkills-cell">Mirror Fleet</div>
 					<div class="formSkills-cell">Optimist Fleet</div>
-					<div class="formSkills-cell">Handicap Fleet</div>
-					<div class="formSkills-cell">RYA Instructor</div>
+					<div class="formSkills-cell">Perf' Fleet</div>
+					<div class="formSkills-cell">RS-200 Fleet</div>
+					<div class="formSkills-cell">RS Tera</div>
+					<div class="formSkills-cell">Topaz Fleet</div>
+					<div class="formSkills-cell">Topper Fleet</div>
+					<div class="formSkills-cell">Windsurf Fleet</div>
+
 				</div>
 			</div>
 			<div class="field-group">
@@ -505,18 +507,21 @@ function ModalPopupsPrompt() {
 					<div class="formSkills-cell"><input type="checkbox" name="GenNews" checked="checked"/></div>
 					<div class="formSkills-cell"><input type="checkbox" name="JuniorNews" id="JuniorSailing1"/></div>
 					<div class="formSkills-cell"><input type="checkbox" name="Team15" id="JuniorWindsurfing1"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="Windsurf" id="Windsurf1"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="Perf" id="Performance"/></div>
 					<div class="formSkills-cell"><input type="checkbox" name="F15" id="Flying Fifteen1"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="RS200" id="RS2001"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="Laser" id="Laser1"/></div>
 					<div class="formSkills-cell"><input type="checkbox" name="GP14" id="GP141"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="Topper" id="Topper1"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="Topaz" id="Topaz1"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="Mirror" id="Mirror1"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="Optimist" id="Optimist1"/></div>
 					<div class="formSkills-cell"><input type="checkbox" name="Handicap" id="Handicap1"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="Instructor" id="Instructor1"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="Laser" id="Laser1"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="Mirror" id="Mirror1"/></div>								<div class="formSkills-cell"><input type="checkbox" name="Windsurf" id="Windsurf1"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="Optimist" id="Optimist1"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="Perf" id="Performance"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="RS200" id="RS2001"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="Tera" id="Tera1"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="Topaz" id="Topaz1"/></div>
+					<div class="formSkills-cell"><input type="checkbox" name="Topper" id="Topper1"/></div>
+
+
+
+
 				</div>
 			</div>
 			<div id="dynamicInputNews">

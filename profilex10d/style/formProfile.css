@@ -1,13 +1,4 @@
-<br />
-<b>Deprecated</b>:  Function ereg() is deprecated in <b>/home/drsccouk/public_html/administrator/components/com_osefileman/include/fun_extra.php</b> on line <b>475</b><br />
-<br />
-<b>Deprecated</b>:  Function ereg() is deprecated in <b>/home/drsccouk/public_html/administrator/components/com_osefileman/include/fun_extra.php</b> on line <b>477</b><br />
-<br />
-<b>Deprecated</b>:  Function ereg() is deprecated in <b>/home/drsccouk/public_html/administrator/components/com_osefileman/include/fun_extra.php</b> on line <b>479</b><br />
-<br />
-<b>Deprecated</b>:  Function ereg() is deprecated in <b>/home/drsccouk/public_html/administrator/components/com_osefileman/include/fun_extra.php</b> on line <b>481</b><br />
-<br />
-<b>Deprecated</b>:  Function ereg() is deprecated in <b>/home/drsccouk/public_html/administrator/components/com_osefileman/include/fun_extra.php</b> on line <b>483</b><br />
+
         body { font-family:YanoneKaffeesatzLight,Helvetica,Arial,sans-serif; font-size:13px; margin:20px; color: black;}
         #main { width:100%; margin: 0px auto; border:solid 1px #b2b3b5; -moz-border-radius:10px; padding:20px; background-color:#f6f6f6;}
         #header { text-align:center; border-bottom:solid 1px #b2b3b5; margin: 0 0 20px 0; }
@@ -88,4 +79,59 @@ form  p{color: black; width: 910px;}
     		background: url("http://venus.servers.eqx.misp.co.uk/~drsccouk/templates/rt_momentum/images/overlays/global/dark-40.png") repeat;	; 
     		margin: 5px;
     		padding-left: 5px;
-         
+        }
+
+
+	 .form-table {
+          padding: 0px;
+          margin:  0px;}
+
+	.formInfo { 
+
+	      display: inline-block;
+
+
+  vertical-align: middle;
+margin-top: 5px;
+border-width: 0 !important;
+background-color: transparent;
+font-size: 0.8em !important;
+}
+
+.formSkills-cell {
+
+width: 3.8em;
+
+ max-width: 3.8em;
+
+  min-width: 3.5em;
+
+  display: inline-block;
+
+vertical-align: middle;
+
+margin-top: 5px;
+text-align: center;
+
+ border-left: 1px solid black !important;
+font-size: 0.8em !important;
+ }
+
+  	  .formSkills-member {
+
+  	  width: 110px;
+
+     max-width: 110px;
+
+    min-width: 100px;
+ display: inline-block;
+
+    vertical-align: middle;
+
+  	margin-top: 5px;
+
+  	 text-align: left;
+font-size: 0.8em !important;
+  	}
+
+  	

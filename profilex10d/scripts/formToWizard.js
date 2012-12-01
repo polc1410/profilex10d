@@ -45,7 +45,7 @@
 
         function createPrevButton(i) {
             var stepName = "step" + i;
-            $("#" + stepName + "commands").append("<a href='javascript:void(0)' id='" + stepName + "Prev' class='prev'>< Back</a>");/* changed to js-void(0) to avoid chnaging J! URL*/ 
+            $("#" + stepName + "commands").append("<a href='javascript:void(0)' id='" + stepName + "Prev' class='readon'><span>< Back<span></a>");/* changed to js-void(0) to avoid chnaging J! URL*/ 
 
             $("#" + stepName + "Prev").bind("click", function(e) {
                 $("#" + stepName).hide();
@@ -57,7 +57,7 @@
 
         function createNextButton(i) {
             var stepName = "step" + i;
-            $("#" + stepName + "commands").append("<a href='javascript:void(0)' id='" + stepName + "Next' class='next'>Next ></a>"); /* changed to js-void(0) to avoid chnaging J! URL*/ 
+            $("#" + stepName + "commands").append("<a href='javascript:void(0)' id='" + stepName + "Next' class='readon'><span>Next ></span></a>"); /* changed to js-void(0) to avoid chnaging J! URL*/ 
 
             $("#" + stepName + "Next").bind("click", function(e) {
                 $("#" + stepName).hide();
