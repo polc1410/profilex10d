@@ -364,15 +364,26 @@ function searchForId($id, $array) {
    }
    return null;
 }
-
-				$key = searchForId('individ', $plans);
-				echo '<input type="button" value="Add a sailing adult £'.$plans[$key][price].'" onClick="addInput(\'dynamicInputMembers\',\'individ\','.$plans[$key][price].')">';
+				if ($plans[$_GET[usage]-1][desc] =="family") {
+					$key = searchForId('famAdu', $plans);
+					$type = "famAdu";
+				} else {
+					$key = searchForId('individ', $plans);
+					$type = "individ";
+				}
+				echo '<input type="button" value="Add a sailing adult £'.$plans[$key][price].'" onClick="addInput(\'dynamicInputMembers\',\''.$type.'\','.$plans[$key][price].')">';
 
 				$key = searchForId('nonsail', $plans);
 				echo '<input type="button" value="Add a non-sailing adult £'.$plans[$key][price].'" onClick="addInput(\'dynamicInputMembers\',\'nonsail\','.$plans[$key][price].')">';
 
-				$key = searchForId('junior', $plans);
-				echo '<input type="button" value="Add a child £'.$plans[$key][price].'" onClick="addInput(\'dynamicInputMembers\',\'junior\','.$plans[$key][price].')">';
+				if ($plans[$_GET[usage]-1][desc] =="family") {
+					$key = searchForId('famJun', $plans);
+					$type = "famJun";
+				} else {
+					$key = searchForId('junior', $plans);
+					$type = "junior";
+				}
+				echo '<input type="button" value="Add a child £'.$plans[$key][price].'" onClick="addInput(\'dynamicInputMembers\',\''.$type.'\','.$plans[$key][price].')">';
 
 				$key = searchForId('student', $plans);
 				echo '<input type="button" value="Add a student £'.$plans[$key][price].'" onClick="addInput(\'dynamicInputMembers\',\'student\','.$plans[$key][price].')">';
