@@ -15,6 +15,32 @@ jimport('joomla.utilities.date');
  * @subpackage	User.profile
  * @version		2.5.6
  */
+
+$plans = getPlans(JPATH_BASE . "plugins/user/profile10/plans.txt");
+
+function getPlans($filename){
+        
+            $mappings = array();
+            $id = fopen($filename, "r"); //open the file
+            $data = fgetcsv($id, filesize($filename), "\t"); 
+            
+            if(!$mappings){
+                $mappings = $data;
+            }
+            
+            while($data = fgetcsv($id, filesize($filename), "\t")){
+                if($data[0]){
+                    foreach($data as $key => $value)
+                        $converted_data[$mappings[$key]] = addslashes($value);
+                        $arr[] = $converted_data; 
+                        
+                } 
+            }  
+            
+            fclose($id); //close file
+            return $arr;
+        }  
+
 class plgUserProfile10 extends JPlugin
 {
 	/**
