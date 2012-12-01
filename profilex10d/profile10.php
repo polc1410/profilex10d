@@ -16,30 +16,7 @@ jimport('joomla.utilities.date');
  * @version		2.5.6
  */
 
-$plans = getPlans(JPATH_BASE . "plugins/user/profile10/plans.txt");
 
-function getPlans($filename){
-        
-            $mappings = array();
-            $id = fopen($filename, "r"); //open the file
-            $data = fgetcsv($id, filesize($filename), "\t"); 
-            
-            if(!$mappings){
-                $mappings = $data;
-            }
-            
-            while($data = fgetcsv($id, filesize($filename), "\t")){
-                if($data[0]){
-                    foreach($data as $key => $value)
-                        $converted_data[$mappings[$key]] = addslashes($value);
-                        $arr[] = $converted_data; 
-                        
-                } 
-            }  
-            
-            fclose($id); //close file
-            return $arr;
-        }  
 
 class plgUserProfile10 extends JPlugin
 {
@@ -65,6 +42,10 @@ class plgUserProfile10 extends JPlugin
 
 	}
 
+
+
+
+
 	/**
 	 * @param	string	$context	The context for the data
 	 * @param	int		$data		The user id
@@ -75,6 +56,11 @@ class plgUserProfile10 extends JPlugin
 	 */
 	function onContentPrepareData($context, $data)
 	{
+
+
+
+
+
 		// Check we are manipulating a valid form.
 		if (!in_array($context, array('com_users.profile', 'com_users.user', 'com_users.registration', 'com_admin.profile')))
 		{

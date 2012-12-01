@@ -153,7 +153,31 @@ function ModalPopupsPrompt() {
 <form class="jotform-form" method="POST" name ="" action="<?php echo  JRoute::_( 'index.php?option=com_acctexp' ) ; ?>">
 
 	<div class="Cart"><img src="<?PHP echo JURI::base(); ?>media/profile10/images/shopping_cart.png" height="16px" width = "16px"/>
-		<div class="form-cell" style="white-space: nowrap;">Current value: &pound;<input name="Basket" id="Basket" value="0.00" class="formInfo" />
+	 <?PHP 
+	    //READ THE PRICE 
+		$filename=(JPATH_BASE . "/plugins/user/profile10/plans.txt");      
+            $mappings = array();
+            $id = fopen($filename, "r"); //open the file
+            $data = fgetcsv($id, filesize($filename), "\t"); 
+            
+            if(!$mappings){
+                $mappings = $data;
+            }
+            
+            while($data = fgetcsv($id, filesize($filename), "\t")){
+                if($data[0]){
+                    foreach($data as $key => $value)
+                        $converted_data[$mappings[$key]] = addslashes($value);
+                        $arr[] = $converted_data; 
+                        
+                } 
+            }  
+            
+            fclose($id); //close file
+            global $plans;
+		$plans = $arr;
+		?>
+		<div class="form-cell" style="white-space: nowrap;">Current value: &pound;<input name="Basket" id="Basket" value="<?PHP 		echo $plans[$_GET[usage]-1][price];?>" class="formInfo" size="5" readonly="true" />
 		</div>
 	</div>
 	<fieldset>
