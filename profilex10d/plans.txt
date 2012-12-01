@@ -1,0 +1,11 @@
+pId	desc	price	dob	dobRule
+1	honour	0.00	N	
+2	nonsail	55.00	N	
+3	student	50.00	Y	
+4	individ	245.00	N
+5	veteran	170.00	Y
+6	family	345.00	N
+7	dinghy	15.00	N
+8	junior	50.00	Y
+9	famJun	0.00	Y
+10	famAdu	0.00	N
