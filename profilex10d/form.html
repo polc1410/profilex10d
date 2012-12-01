@@ -415,7 +415,10 @@ function ModalPopupsPrompt() {
 				<div id="dynamicInputBoats">
 
 				</div>
-				<input type="button" value="Add a Boat with Dinghy Space (&pound;10)" onClick="addInput('dynamicInputBoats','Space',10);">
+				<?php
+				$key = searchForId('dinghy', $plans);
+				echo '<input type="button" value="Add a Boat/Windsurf with Dinghy Space £'.$plans[$key][price].'" onClick="addInput(\'dynamicInputBoats\',\'Space\','.$plans[$key][price].')">';
+				?>
 				<input type="button" value="Add a Boat with out Dinghy Space (Free)" onClick="addInput('dynamicInputBoats','NoSpace',0);">
 			</div>
 		</div>	
@@ -425,7 +428,7 @@ function ModalPopupsPrompt() {
 			Training &amp; Skills
 		</legend>
 		<div class="form-all">
-			<p>We'd like to know about your existign sailing skills so that we can help you get sailing with the club as quickly as possible.  Please let us know if you have any of the following qualifications.</p>
+			<p>We'd like to know about your existing sailing skills so that we can help you get sailing with the club as quickly as possible.  Please let us know if you have any of the following qualifications.</p>
 			<div class="field-group">
 				<div class="form-row">
 					<div class="formSkills-member">Member</div>
