@@ -1,9 +1,37 @@
+<?PHP 
+	    //READ THE PRICE 
+		$filename=(JPATH_BASE . "/plugins/user/profile10/plans.txt");      
+            $mappings = array();
+            $id = fopen($filename, "r"); //open the file
+            $data = fgetcsv($id, filesize($filename), "\t"); 
+            
+            if(!$mappings){
+                $mappings = $data;
+            }
+            
+            while($data = fgetcsv($id, filesize($filename), "\t")){
+                if($data[0]){
+                    foreach($data as $key => $value) 
+                        $converted_data[$mappings[$key]] = addslashes($value);
+                        $arr[] = $converted_data; 
+                      
+                } 
+            }  
+            
+            fclose($id); //close file
+            $plans;
+		$plans = $arr;
 
-
-
-
-
-
+		
+		function searchForId($id, $array) {
+  		 foreach ($array as $key => $val) {
+    	   if ($val['desc'] === $id) {
+    	       return $key;
+     	  }
+  		 }
+  		 return null;
+		}
+?>
 <script type="text/javascript">
 
 			jQuery(window).ready(function() { 
@@ -27,7 +55,15 @@ function addInput(divName, selectionType, value){
           
          case "dynamicInputMembers": 
           htmlResult = '<table id="memberTable'+counter+'"> <tr> 	<td><input type="text" name="jform[profile][firstname'+counter+']" id="jform_profile_firstname'+counter+'" onblur="this.form.Name_Skills'+counter+'.value=this.form.jform_profile_firstname'+counter+'.value.concat(space,this.form.jform_profile_lastname'+counter+'.value);this.form.Name_News'+counter+'.value=this.form.Name_Skills'+counter+'.value"/></td> 	<td><input type="text" name="jform[profile][lastname'+counter+']" id="jform_profile_lastname'+counter+'" onblur="this.form.Name_Skills'+counter+'.value=this.form.jform_profile_firstname'+counter+'.value.concat(space,this.form.jform_profile_lastname'+counter+'.value);this.form.Name_News'+counter+'.value=this.form.Name_Skills'+counter+'.value;" /></td><td><input class="formInfo" src="<?PHP echo JURI::base(); ?>media/profile10/images/duplicate.png" alt="Use Previous" type="image", onclick="this.form.jform_profile_email'+counter+'.value=this.form.jform_profile_email1.value;return false;"></td><td><input type="email" name="jform[profile][email'+counter+']" id="jform_profile_email'+counter+'" /></td> <td><input type="date" name="jform[profile][dob'+counter+']" id="jform_profile_dob'+counter+'" /></td> <td><input type="phone" name="jform[profile][mobile'+counter+']" id="jform_profile_mobile'+counter+'" /></td> <td><div class="form-cell" style="white-space:nowrap; "><input type="image" src="<?PHP echo JURI::base(); ?>media/profile10/images/delete.png" onclick="deleteRow(\'memberTable'+counter+'\'); deleteRow(\'skillsTable'+counter+'\'); deleteRow(\'newsTable'+counter+'\');updateBasket(-'+value+');return false;"/><input type="text" class="formInfo" name="jform[profile][membertype'+counter+']" id="jform_profile_membertype'+counter+'"  value ="'+selectionType+'" readonly="true" /></div></td></tr></table>';
+          if (selectionType =="famAdu") {
+            <?PHP
+            $key = searchForId('individ', $plans);
+			$type = "individ";
+			?>
+          	document.getElementById("adultMember").value="Add a sailing adult £<?PHP echo $plans[$key][price];?>";
+            document.getElementById("adultMember").onclick=function(){addInput('dynamicInputMembers','<?PHP echo $type; ?>',<?PHP echo $plans[$key][price];?>);};
           	
+          }	
 			
 			 break;
 			case "dynamicInputBoats":
@@ -153,31 +189,9 @@ function ModalPopupsPrompt() {
 <form class="jotform-form" method="POST" name ="" action="<?php echo  JRoute::_( 'index.php?option=com_acctexp' ) ; ?>">
 
 	<div class="Cart"><img src="<?PHP echo JURI::base(); ?>media/profile10/images/shopping_cart.png" height="16px" width = "16px"/>
-	 <?PHP 
-	    //READ THE PRICE 
-		$filename=(JPATH_BASE . "/plugins/user/profile10/plans.txt");      
-            $mappings = array();
-            $id = fopen($filename, "r"); //open the file
-            $data = fgetcsv($id, filesize($filename), "\t"); 
-            
-            if(!$mappings){
-                $mappings = $data;
-            }
-            
-            while($data = fgetcsv($id, filesize($filename), "\t")){
-                if($data[0]){
-                    foreach($data as $key => $value)
-                        $converted_data[$mappings[$key]] = addslashes($value);
-                        $arr[] = $converted_data; 
-                        
-                } 
-            }  
-            
-            fclose($id); //close file
-            $plans;
-		$plans = $arr;
-		?>
-		<div class="form-cell" style="white-space: nowrap;">Current value: &pound;<input name="Basket" id="Basket" value="<?PHP 		echo $plans[$_GET[usage]-1][price];?>" class="formInfo" size="5" readonly="true" />
+
+
+		<div class="form-cell" style="white-space: nowrap;">Current value: &pound;<input name="Basket" id="Basket" value="<?PHP echo $plans[$_GET[usage]-1][price];?>" class="formInfo" size="5" readonly="true" />
 		</div>
 	</div>
 	<fieldset>
@@ -325,6 +339,8 @@ function ModalPopupsPrompt() {
 	 	<div class="form-all">
 	 		<p>There are a few extra pieces of information that would be helpful to us.  In the future we may wish to use SMS (Text Messaging) to keep in touch with members.  We respect your privacy and will never share this information outside the club.</p>
 	 		<p>If you wish to apply for family membership or wish to add an additional member <strong>who lives at the same address</strong> please select the appropriate type of member below and complete the member's details.</p>
+			<p class="attention">We require the Date of Birth to be completed for Junior, Student and Veteran Members.</p>
+			
 			<div class="field-group">
 				<table class="form-table">
 					<thead>
@@ -356,14 +372,7 @@ function ModalPopupsPrompt() {
 
 				</div>
 <?PHP
-function searchForId($id, $array) {
-   foreach ($array as $key => $val) {
-       if ($val['desc'] === $id) {
-           return $key;
-       }
-   }
-   return null;
-}
+
 				if ($plans[$_GET[usage]-1][desc] =="family") {
 					$key = searchForId('famAdu', $plans);
 					$type = "famAdu";
@@ -371,7 +380,7 @@ function searchForId($id, $array) {
 					$key = searchForId('individ', $plans);
 					$type = "individ";
 				}
-				echo '<input type="button" value="Add a sailing adult £'.$plans[$key][price].'" onClick="addInput(\'dynamicInputMembers\',\''.$type.'\','.$plans[$key][price].')">';
+				echo '<input type="button" id="adultMember" value="Add a sailing adult £'.$plans[$key][price].'" onClick="addInput(\'dynamicInputMembers\',\''.$type.'\','.$plans[$key][price].')">';
 
 				$key = searchForId('nonsail', $plans);
 				echo '<input type="button" value="Add a non-sailing adult £'.$plans[$key][price].'" onClick="addInput(\'dynamicInputMembers\',\'nonsail\','.$plans[$key][price].')">';
