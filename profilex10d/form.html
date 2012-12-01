@@ -355,13 +355,33 @@ function ModalPopupsPrompt() {
 				<div id="dynamicInputMembers">
 
 				</div>
+<?PHP
+function searchForId($id, $array) {
+   foreach ($array as $key => $val) {
+       if ($val['desc'] === $id) {
+           return $key;
+       }
+   }
+   return null;
+}
 
-				<input type="button" value="Add a sailing adult" onClick="addInput('dynamicInputMembers','Adult',110);">
-				<input type="button" value="Add a non-sailing adult" onClick="addInput('dynamicInputMembers','NonSailing',45);">
-				<input type="button" value="Add a child" onClick="addInput('dynamicInputMembers','Child',45);">
-				<input type="button" value="Add a student" onClick="addInput('dynamicInputMembers','Student',45);">
-				<input type="button" value="Add a veteran" onClick="addInput('dynamicInputMembers','Veteran', 70)">
-			</div>
+				$key = searchForId('individ', $plans);
+				echo '<input type="button" value="Add a sailing adult £'.$plans[$key][price].'" onClick="addInput(\'dynamicInputMembers\',\'individ\','.$plans[$key][price].')">';
+
+				$key = searchForId('nonsail', $plans);
+				echo '<input type="button" value="Add a non-sailing adult £'.$plans[$key][price].'" onClick="addInput(\'dynamicInputMembers\',\'nonsail\','.$plans[$key][price].')">';
+
+				$key = searchForId('junior', $plans);
+				echo '<input type="button" value="Add a child £'.$plans[$key][price].'" onClick="addInput(\'dynamicInputMembers\',\'junior\','.$plans[$key][price].')">';
+
+				$key = searchForId('student', $plans);
+				echo '<input type="button" value="Add a student £'.$plans[$key][price].'" onClick="addInput(\'dynamicInputMembers\',\'student\','.$plans[$key][price].')">';
+
+				$key = searchForId('veteran', $plans);
+				echo '<input type="button" value="Add a veteran £'.$plans[$key][price].'" onClick="addInput(\'dynamicInputMembers\',\'veteran\','.$plans[$key][price].')">';
+
+				?>
+							</div>
 
 		</div>
 	</fieldset>
