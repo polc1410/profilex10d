@@ -12,6 +12,7 @@
         input[type=text], input[type=password] { width:150px; padding:3px; border:solid 1px #000; margin: 3px}
         input[type=email] { width:252px; padding:3px; border:solid 1px #000; margin: 3px}
         input[type=date] { width:6.5em; padding:3px; border:solid 1px #000; margin: 3px}
+        .datefield { width:6.5em; padding:3px; border:solid 1px #000; margin: 3px}
         input[type=phone] { width:8em; padding:3px; border:solid 1px #000; margin: 3px}
         input[type=checkbox] { display:in-line block;}
 

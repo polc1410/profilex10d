@@ -406,7 +406,7 @@ function ModalPopupsPrompt() {
 						} 
 
 						echo '<td>';
-echo JHTML::calendar('','jform[profile][dob'.$row.']','jform_profile_dob'.$row,'%Y-%m-%d', 'size="12" class="validate[custom[date], '.$validateDob.'] datepicker"') . "</td>";
+echo JHTML::calendar('','jform[profile][dob'.$row.']','jform_profile_dob'.$row,'%Y-%m-%d', 'size="12" class="datefield validate[custom[date], '.$validateDob.'] datepicker"') . "</td>";
 						echo '<td><input class="validate[custom[phone]]" type="phone" name="jform[profile][mobile'.$row.']" id="jform_profile_mobile'.$row.'" value="'.$data->profile["mobile".$row].'"/></td>';
 						echo '<td><input class="formInfo" type="text" readonly="true" name="jform[profile][membertype'.$row.']" id="jform_profile_membertype'.$row.'" value="'.$data->profile["membertype".$row].$plans[$_GET[usage]-1][desc].'" size ="6"/></td>';
 					echo '</tr>';
