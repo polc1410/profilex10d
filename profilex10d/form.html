@@ -55,7 +55,7 @@ var limit = 200;
 var space = " ";
 var classPromptResponse = "";
 function addInput(divName, selectionType, value){
-     if (counter == limit)  {
+	if (counter == limit)  {
           alert("You have reached the limit of adding " + counter + " inputs");
      }
      else {
@@ -79,7 +79,18 @@ function addInput(divName, selectionType, value){
 		} 
 		 ?>
          
-          htmlResult = '<table id="memberTable'+counter+'"> <tr> 	<td><input type="text" name="jform[profile][firstname'+counter+']" id="jform_profile_firstname'+counter+'" onblur="this.form.Name_Skills'+counter+'.value=this.form.jform_profile_firstname'+counter+'.value.concat(space,this.form.jform_profile_lastname'+counter+'.value);this.form.Name_News'+counter+'.value=this.form.Name_Skills'+counter+'.value"/></td> 	<td><input type="text" name="jform[profile][lastname'+counter+']" id="jform_profile_lastname'+counter+'" onblur="this.form.Name_Skills'+counter+'.value=this.form.jform_profile_firstname'+counter+'.value.concat(space,this.form.jform_profile_lastname'+counter+'.value);this.form.Name_News'+counter+'.value=this.form.Name_Skills'+counter+'.value;" /></td><td><input class="formInfo" src="<?PHP echo JURI::base(); ?>media/profile10/images/duplicate.png" alt="Use Previous" type="image", onclick="this.form.jform_profile_email'+counter+'.value=this.form.jform_profile_email1.value;return false;"></td><td><input type="email" class="validate[custom[email]]" name="jform[profile][email'+counter+']" id="jform_profile_email'+counter+'" /></td> <td><input type="date" class="'+validateDob+'" name="jform[profile][dob'+counter+']" onchange="validateDob('+counter+')" id="jform_profile_dob'+counter+'" /></td> <td><input type="phone" name="jform[profile][mobile'+counter+']" id="jform_profile_mobile'+counter+'" /></td> <td><div class="form-cell" style="white-space:nowrap; "><input type="image" src="<?PHP echo JURI::base(); ?>media/profile10/images/delete.png" onclick="deleteRow(\'memberTable'+counter+'\'); deleteRow(\'skillsTable'+counter+'\'); deleteRow(\'newsTable'+counter+'\');updateBasket(-'+value+');return false;"/><input type="text" class="formInfo" name="jform[profile][membertype'+counter+']" id="jform_profile_membertype'+counter+'"  value ="'+selectionType+'" readonly="true" /></div></td></tr></table>';
+          htmlResult = '<table id="memberTable'+counter+'"> <tr>\
+          <td><input type="text" name="jform[profile][firstname'+counter+']" id="jform_profile_firstname'+counter+'" onblur="this.form.Name_Skills'+counter+'.value=this.form.jform_profile_firstname'+counter+'.value.concat(space,this.form.jform_profile_lastname'+counter+'.value);this.form.Name_News'+counter+'.value=this.form.Name_Skills'+counter+'.value"/></td>\
+          <td><input type="text" name="jform[profile][lastname'+counter+']" id="jform_profile_lastname'+counter+'" onblur="this.form.Name_Skills'+counter+'.value=this.form.jform_profile_firstname'+counter+'.value.concat(space,this.form.jform_profile_lastname'+counter+'.value);this.form.Name_News'+counter+'.value=this.form.Name_Skills'+counter+'.value;" /></td>\
+          <td><input class="formInfo" src="<?PHP echo JURI::base(); ?>media/profile10/images/duplicate.png" alt="Use Previous" type="image", onclick="this.form.jform_profile_email'+counter+'.value=this.form.jform_profile_email1.value;return false;"></td>\
+          <td><input type="email" class="validate[custom[email]]" name="jform[profile][email'+counter+']" id="jform_profile_email'+counter+'" /></td>\
+          <td><span style="white-space:nowrap;"><input type="text" class="datefield '+validateDob+' datepicker" name="jform[profile][dob'+counter+']" id="jform_profile_dob'+counter+'" /> <img src="/~drsccouk/media/system/images/calendar.png" alt="Calendar" class="calendar" id="jform_profile_dob'+counter+'_img"> </span></td>\
+          <td><input type="phone" name="jform[profile][mobile'+counter+']" id="jform_profile_mobile'+counter+'" /></td>\
+          <td><div class="form-cell" style="white-space:nowrap; "><input type="image" src="<?PHP echo JURI::base(); ?>media/profile10/images/delete.png" onclick="deleteRow(\'memberTable'+counter+'\'); deleteRow(\'skillsTable'+counter+'\'); deleteRow(\'newsTable'+counter+'\');updateBasket(-'+value+');return false;"/><input type="text" class="formInfo" name="jform[profile][membertype'+counter+']" id="jform_profile_membertype'+counter+'"  value ="'+selectionType+'" readonly="true" /></div></td></tr></table>';
+ 
+		  var calendarId = 'jform_profile_dob'+counter ;
+		  var calendarButton = 'jform_profile_dob'+counter+'_img' ;
+          
           if (selectionType =="famAdu") {
             <?PHP
             $key = searchForId('individ', $plans);
@@ -116,11 +127,26 @@ function addInput(divName, selectionType, value){
 				}
 			 
 			 newdiv.innerHTML = htmlResult;			
-          document.getElementById(divName).appendChild(newdiv);
+			 
+			 document.getElementById(divName).appendChild(newdiv);
+			
           updateBasket (value);
           if (divName=="dynamicInputMembers"){
 				addInput("dynamicInputSkills","",0)   
 				addInput("dynamicInputNews","",0)  
+				
+				window.addEvent('domready', function() {Calendar.setup({
+						// Id of the input field
+						inputField: calendarId,
+						// Format of the input field
+						ifFormat: "%Y-%m-%d",
+						// Trigger for the calendar (button ID)
+						button: calendarButton,
+						// Alignment (defaults to "Bl")
+						align: "Tl",
+						singleClick: true,
+						firstDay: 0
+						});});
 				counter ++;       
           } 
            if (divName=="dynamicInputBoats"){
@@ -377,7 +403,7 @@ function ModalPopupsPrompt() {
 					<thead>
 						<th>First Name</th>
 						<th>Last Name</th>
-						<th><img src=<?php echo '"'.JPATH_BASE . '/media/plugins/profile10/images/blank.png"'; ?> alt="" ></th>
+						<th><img src=<?php echo '"'.JURI::base(). 'media/profile10/images/blank.png"'; ?> alt="" ></th>
 						<th>Email</th>
 						<th>Date of Birth</th>
 						<th>Mobile Tel</th>
@@ -389,7 +415,7 @@ function ModalPopupsPrompt() {
 					echo '<tr>';
 						echo '<td><input class="formInfo" type="text" name="jform[profile][firstname'.$row.']" id="jform_profile_firstname'.$row.'" readonly="true" value="'.$data->profile["firstname".$row].'"/></td>';
 						echo '<td><input class="formInfo" type="text" name="jform[profile][lastname'.$row.']" id="jform_profile_lastname'.$row.'" readonly="true" value="'.$data->profile["lastname".$row].'"/></td>';
-						echo '<td></td>';
+						echo '<td><img src="'.JURI::base(). 'media/plugins/images/blank.png" alt="" ></td>';
 						echo '<td><input class="formInfo validate[custom[email]]" type="email" name="jform[profile][email'.$row.']" id="jform_profile_email'.$row.'" readonly="true" value="'.$data->profile["email".$row].'"/></td>';
 
 						$validateDob = "";
@@ -406,7 +432,7 @@ function ModalPopupsPrompt() {
 						} 
 
 						echo '<td><span style="white-space:nowrap;">';
-echo JHTML::calendar('','jform[profile][dob'.$row.']','jform_profile_dob'.$row,'%Y-%m-%d', 'size="12" class="datefield validate[custom[date], '.$validateDob.'] datepicker"') . "</span></td>";
+						echo JHTML::calendar('','jform[profile][dob'.$row.']','jform_profile_dob'.$row,'%Y-%m-%d', 'size="12" class="datefield validate[custom[date], '.$validateDob.'] datepicker"') . "</span></td>";
 						echo '<td><input class="validate[custom[phone]]" type="phone" name="jform[profile][mobile'.$row.']" id="jform_profile_mobile'.$row.'" value="'.$data->profile["mobile".$row].'"/></td>';
 						echo '<td><input class="formInfo" type="text" readonly="true" name="jform[profile][membertype'.$row.']" id="jform_profile_membertype'.$row.'" value="'.$data->profile["membertype".$row].$plans[$_GET[usage]-1][desc].'" size ="6"/></td>';
 					echo '</tr>';
