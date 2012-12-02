@@ -5,7 +5,7 @@
         fieldset { border:none; width:910px; }
         form {background: #EFF5FB; color: black;}
 
-form  p{color: black; width: 910px;}
+	form  p{color: black; width: 910px;}
         legend { font-size:18px; margin:0px; padding:5px 0px; color:#08088A; font-weight:bold; }
         label { display:block; margin:15px 0 5px;}
         th {font-weight: normal;  font-size: 13px; text-align: left; padding-left: 5px; }
@@ -14,8 +14,7 @@ form  p{color: black; width: 910px;}
         input[type=date] { width:6.5em; padding:3px; border:solid 1px #000; margin: 3px}
         input[type=phone] { width:8em; padding:3px; border:solid 1px #000; margin: 3px}
         input[type=checkbox] { display:in-line block;}
-        .prev, .next { background-color:#08088A; padding:5px 10px; color:#fff; text-decoration:none;}
-        .prev:hover, .next:hover { background-color:#000; text-decoration:none;}
+
         .prev { float:left;}
         .next { float:right;}
         #steps { list-style:none; width:100%; overflow:hidden; margin:0px; padding:0px; background: rgb(35, 88, 166); }

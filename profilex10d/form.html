@@ -1,4 +1,5 @@
 <?PHP 
+
 	    //READ THE PRICE 
 		$filename=(JPATH_BASE . "/plugins/user/profile10/plans.txt");      
             $mappings = array();
@@ -34,10 +35,19 @@
 ?>
 <script type="text/javascript">
 
-			jQuery(window).ready(function() { 
-      		jQuery('.jotform-form').formToWizard({ submitButton: 'register' }); 
-           })
 
+			
+	   jQuery(document).ready(function(){
+        jQuery("#jotform-form").validationEngine('attach');
+      
+
+jQuery( '#jotform-form' ).formToWizard({
+   validateBeforeNext: function() {
+      //validationEngine is a jQuery validation plugin
+      return jQuery( '#jotform-form' ).validationEngine( 'validate' );
+   }
+});
+ });
 
 var counter = 2;
 var boatCounter = 1;
@@ -54,7 +64,22 @@ function addInput(divName, selectionType, value){
           switch (divName ) {
           
          case "dynamicInputMembers": 
-          htmlResult = '<table id="memberTable'+counter+'"> <tr> 	<td><input type="text" name="jform[profile][firstname'+counter+']" id="jform_profile_firstname'+counter+'" onblur="this.form.Name_Skills'+counter+'.value=this.form.jform_profile_firstname'+counter+'.value.concat(space,this.form.jform_profile_lastname'+counter+'.value);this.form.Name_News'+counter+'.value=this.form.Name_Skills'+counter+'.value"/></td> 	<td><input type="text" name="jform[profile][lastname'+counter+']" id="jform_profile_lastname'+counter+'" onblur="this.form.Name_Skills'+counter+'.value=this.form.jform_profile_firstname'+counter+'.value.concat(space,this.form.jform_profile_lastname'+counter+'.value);this.form.Name_News'+counter+'.value=this.form.Name_Skills'+counter+'.value;" /></td><td><input class="formInfo" src="<?PHP echo JURI::base(); ?>media/profile10/images/duplicate.png" alt="Use Previous" type="image", onclick="this.form.jform_profile_email'+counter+'.value=this.form.jform_profile_email1.value;return false;"></td><td><input type="email" name="jform[profile][email'+counter+']" id="jform_profile_email'+counter+'" /></td> <td><input type="date" name="jform[profile][dob'+counter+']" id="jform_profile_dob'+counter+'" /></td> <td><input type="phone" name="jform[profile][mobile'+counter+']" id="jform_profile_mobile'+counter+'" /></td> <td><div class="form-cell" style="white-space:nowrap; "><input type="image" src="<?PHP echo JURI::base(); ?>media/profile10/images/delete.png" onclick="deleteRow(\'memberTable'+counter+'\'); deleteRow(\'skillsTable'+counter+'\'); deleteRow(\'newsTable'+counter+'\');updateBasket(-'+value+');return false;"/><input type="text" class="formInfo" name="jform[profile][membertype'+counter+']" id="jform_profile_membertype'+counter+'"  value ="'+selectionType+'" readonly="true" /></div></td></tr></table>';
+        <?PHP    
+		$validateDob = "";
+		foreach($plans as $plan) {  
+ 			if ($plan[dob] == "Y") {
+ 				if ( $plan[dobCk] == ">" ) { 			
+ 					echo 'if (selectionType == "'.$plan[desc].'") validateDob = "validate[custom[date], future['.$plan[dobLimit].']]";';
+ 				} else {
+ 				 	echo 'if (selectionType == "'.$plan[desc].'") validateDob = "validate[custom[date], past['.$plan[dobLimit].']]";';
+ 				}
+ 			} else {
+ 				echo 'if (selectionType == "'.$plan[desc].'") validateDob = "validate[custom[date]]";';
+ 			}
+		} 
+		 ?>
+         
+          htmlResult = '<table id="memberTable'+counter+'"> <tr> 	<td><input type="text" name="jform[profile][firstname'+counter+']" id="jform_profile_firstname'+counter+'" onblur="this.form.Name_Skills'+counter+'.value=this.form.jform_profile_firstname'+counter+'.value.concat(space,this.form.jform_profile_lastname'+counter+'.value);this.form.Name_News'+counter+'.value=this.form.Name_Skills'+counter+'.value"/></td> 	<td><input type="text" name="jform[profile][lastname'+counter+']" id="jform_profile_lastname'+counter+'" onblur="this.form.Name_Skills'+counter+'.value=this.form.jform_profile_firstname'+counter+'.value.concat(space,this.form.jform_profile_lastname'+counter+'.value);this.form.Name_News'+counter+'.value=this.form.Name_Skills'+counter+'.value;" /></td><td><input class="formInfo" src="<?PHP echo JURI::base(); ?>media/profile10/images/duplicate.png" alt="Use Previous" type="image", onclick="this.form.jform_profile_email'+counter+'.value=this.form.jform_profile_email1.value;return false;"></td><td><input type="email" class="validate[custom[email]]" name="jform[profile][email'+counter+']" id="jform_profile_email'+counter+'" /></td> <td><input type="date" class="'+validateDob+'" name="jform[profile][dob'+counter+']" onchange="validateDob('+counter+')" id="jform_profile_dob'+counter+'" /></td> <td><input type="phone" name="jform[profile][mobile'+counter+']" id="jform_profile_mobile'+counter+'" /></td> <td><div class="form-cell" style="white-space:nowrap; "><input type="image" src="<?PHP echo JURI::base(); ?>media/profile10/images/delete.png" onclick="deleteRow(\'memberTable'+counter+'\'); deleteRow(\'skillsTable'+counter+'\'); deleteRow(\'newsTable'+counter+'\');updateBasket(-'+value+');return false;"/><input type="text" class="formInfo" name="jform[profile][membertype'+counter+']" id="jform_profile_membertype'+counter+'"  value ="'+selectionType+'" readonly="true" /></div></td></tr></table>';
           if (selectionType =="famAdu") {
             <?PHP
             $key = searchForId('individ', $plans);
@@ -179,14 +204,20 @@ function ModalPopupsPrompt() {
     }  
     function ModalPopupsPromptCancel() {  
        ModalPopups.Cancel("idPrompt1");  
-    }  
+    } 
+   
+
+
+
+
+
 
 </script>
 
 
 
  </DIV>
-<form class="jotform-form" method="POST" name ="" action="<?php echo  JRoute::_( 'index.php?option=com_acctexp' ) ; ?>">
+<form class="jotform-form" method="POST" name ="jotform-form" id="jotform-form" action="<?php echo  JRoute::_( 'index.php?option=com_acctexp' ) ; ?>">
 
 	<div class="Cart"><img src="<?PHP echo JURI::base(); ?>media/profile10/images/shopping_cart.png" height="16px" width = "16px"/>
 
@@ -207,7 +238,7 @@ function ModalPopupsPrompt() {
 
        			<div class="form-cell">
 						<input class="form-textbox validate[required]" type="text" size="10" name="jform[firstname]" id="jform_firstname" onblur="this.form.jform_profile_firstname1.value=this.form.jform_firstname.value;this.form.Name_Skills.value=this.form.jform_firstname.value+' '+this.form.jform_lastname.value;this.form.Name_News.value=this.form.Name_Skills.value;this.form.jform_name.value=this.form.Name_Skills.value;"/>
-       				<label class="form-sub-label" id="sublabel_first"> First Name </label>
+        				<label class="form-sub-label" id="sublabel_first"> First Name </label>
        			</div>
        
        			<div class="form-cell">
@@ -226,7 +257,7 @@ function ModalPopupsPrompt() {
         			</div>
         					
 	     			<div class="form-cell">
-          			<input type="email" class="form-textbox validate[required, Email]" id="jform_email1" name="jform[email1]" size="30" onblur="this.form.jform_profile_email1.value=this.form.jform_email1.value;" />
+          			<input type="email" class="form-textbox validate[required, custom[email]]" id="jform_email1" name="jform[email1]" size="30" onblur="this.form.jform_profile_email1.value=this.form.jform_email1.value;" />
      				</div>
      			</div>
 
@@ -238,7 +269,7 @@ function ModalPopupsPrompt() {
         			</div>
 
 			      <div class="form-cell">
-          			<input type="email" class="form-textbox validate[Email_Confirm]" id="jform_email2" name="jform[email2]"  size="30" />
+          			<input type="email" class="form-textbox validate[required, equals[jform_email1]]" id="jform_email2" name="jform[email2]"  size="30" />
         			</div>
         		</div>
         	</div>
@@ -281,7 +312,7 @@ function ModalPopupsPrompt() {
         
      	   		<div class="form-cell">
       	  			<div id="cid_6" class="form-input">
-         	 			<input type="password" class="form-textbox validate[required]" id="jform_password2" name="jform[password2]" size="20" />
+         	 			<input type="password" class="form-textbox validate[required, equals[jform_password1]]" id="jform_password2" name="jform[password2]" size="20" />
         				</div>
         			</div>
     	    	</div>
@@ -359,9 +390,24 @@ function ModalPopupsPrompt() {
 						echo '<td><input class="formInfo" type="text" name="jform[profile][firstname'.$row.']" id="jform_profile_firstname'.$row.'" readonly="true" value="'.$data->profile["firstname".$row].'"/></td>';
 						echo '<td><input class="formInfo" type="text" name="jform[profile][lastname'.$row.']" id="jform_profile_lastname'.$row.'" readonly="true" value="'.$data->profile["lastname".$row].'"/></td>';
 						echo '<td></td>';
-						echo '<td><input class="formInfo" type="email" name="jform[profile][email'.$row.']" id="jform_profile_email'.$row.'" readonly="true" value="'.$data->profile["email".$row].'"/></td>';
-						echo '<td><input type="date" name="jform[profile][dob'.$row.']" id="jform_profile_dob'.$row.'" value="'.$data->profile["dob".$row].'"/></td>';
-						echo '<td><input type="phone" name="jform[profile][mobile'.$row.']" id="jform_profile_mobile'.$row.'" value="'.$data->profile["mobile".$row].'"/></td>';
+						echo '<td><input class="formInfo validate[custom[email]]" type="email" name="jform[profile][email'.$row.']" id="jform_profile_email'.$row.'" readonly="true" value="'.$data->profile["email".$row].'"/></td>';
+
+						$validateDob = "";
+						foreach($plans as $plan) {  
+   							if ($data->profile["membertype".$row].$plans[$_GET[usage]-1][desc] == $plan[desc] ) { 
+ 								if ($plan[dob] == "Y") {
+ 									if ( $plan[dobCk] == ">" ) { 			
+ 										$validateDob = "future[".$plan[dobLimit]."]";
+ 									} else {
+ 									 	$validateDob = "past[".$plan[dobLimit]."]";
+ 									}
+ 								}
+							} 
+						} 
+
+						echo '<td>';
+echo JHTML::calendar('','jform[profile][dob'.$row.']','jform_profile_dob'.$row,'%Y-%m-%d', 'size="12" class="validate[custom[date], '.$validateDob.'] datepicker"') . "</td>";
+						echo '<td><input class="validate[custom[phone]]" type="phone" name="jform[profile][mobile'.$row.']" id="jform_profile_mobile'.$row.'" value="'.$data->profile["mobile".$row].'"/></td>';
 						echo '<td><input class="formInfo" type="text" readonly="true" name="jform[profile][membertype'.$row.']" id="jform_profile_membertype'.$row.'" value="'.$data->profile["membertype".$row].$plans[$_GET[usage]-1][desc].'" size ="6"/></td>';
 					echo '</tr>';
 					} 					
