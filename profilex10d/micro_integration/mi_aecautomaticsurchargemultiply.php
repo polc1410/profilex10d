@@ -35,7 +35,12 @@ class mi_aecautomaticsurcharge
 		$settings['amount']		= array( 'inputC' );
 		$settings['mode']		= array( 'list' );
 		$settings['extra']		= array( 'inputD' );
-		$settings['multiplier'] = array( 'inputC');
+		$settings['multiplier'] = array( 'inputE');
+		
+		
+		$rewriteswitches				= array( 'cms', 'user', 'expiration', 'subscription', 'plan', 'invoice' );
+
+		$settings						= AECToolbox::rewriteEngineInfo( $rewriteswitches, $settings );
 
 		$modes = array();
 		$modes[] = JHTML::_('select.option', 'basic', JText::_('MI_MI_AECAUTOMATICSURCHARGE_MULTIPLY_SET_MODE_BASIC') );
@@ -61,12 +66,15 @@ class mi_aecautomaticsurcharge
 
 	function addCost( $request, $item )
 	{
+		
+		
+		$multiplier = AECToolbox::rewriteEngineRQ( $this->settings['multiplier'], $request );
 		$total = $item['terms']->terms[0]->renderTotal();
 
 		if ( $this->settings['mode'] == 'basic' ) {
-			$extracost =  $this->settings['amount'] * $this->settings['multiplier'];
+			$extracost =  $this->settings['amount'] * $multiplier;
 		} else {
-			$extracost =  AECToolbox::correctAmount( ( $total * ( $this->settings['amount']/100 ) ) * $this->settings['multiplier'] );
+			$extracost =  AECToolbox::correctAmount( ( $total * ( $this->settings['amount']/100 ) ) * $multiplier );
 		}
 
 		$newtotal = AECToolbox::correctAmount( $total + $this->settings['amount'] );

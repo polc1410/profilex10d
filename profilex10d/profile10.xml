@@ -18,6 +18,7 @@
 		<filename>plans.txt</filename>
 		<filename>configuration.php</filename>
 		<folder>profiles</folder>
+		<folder folder="components/com_acctexp/micro_integration"></folder>
 
 
 	</files>
