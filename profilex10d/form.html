@@ -86,8 +86,11 @@ function addInput(divName, selectionType, value){
           <td><input type="email" class="validate[custom[email]]" name="jform[profile][email'+counter+']" id="jform_profile_email'+counter+'" /></td>\
           <td><span style="white-space:nowrap;"><input type="text" class="datefield '+validateDob+' datepicker" name="jform[profile][dob'+counter+']" id="jform_profile_dob'+counter+'" /> <img src="/~drsccouk/media/system/images/calendar.png" alt="Calendar" class="calendar" id="jform_profile_dob'+counter+'_img"> </span></td>\
           <td><input type="phone" name="jform[profile][mobile'+counter+']" id="jform_profile_mobile'+counter+'" /></td>\
-          <td><div class="form-cell" style="white-space:nowrap; "><input type="image" src="<?PHP echo JURI::base(); ?>media/profile10/images/delete.png" onclick="deleteRow(\'memberTable'+counter+'\'); deleteRow(\'skillsTable'+counter+'\'); deleteRow(\'newsTable'+counter+'\');updateBasket(-'+value+');return false;"/><input type="text" class="formInfo" name="jform[profile][membertype'+counter+']" id="jform_profile_membertype'+counter+'"  value ="'+selectionType+'" readonly="true" /></div></td></tr></table>';
+          <td><div class="form-cell" style="white-space:nowrap; "><input type="image" src="<?PHP echo JURI::base(); ?>media/profile10/images/delete.png" onclick="deleteRow(\'memberTable'+counter+'\'); deleteRow(\'skillsTable'+counter+'\'); deleteRow(\'newsTable'+counter+'\');updateBasket(-'+value+'); document.getElementById("jform_profile_'+selectionType+'").value +=-1;return false;"/><input type="text" class="formInfo" name="jform[profile][membertype'+counter+']" id="jform_profile_membertype'+counter+'"  value ="'+selectionType+'" readonly="true" /></div></td></tr></table>';
  
+   
+
+          
 		  var calendarId = 'jform_profile_dob'+counter ;
 		  var calendarButton = 'jform_profile_dob'+counter+'_img' ;
           
@@ -179,7 +182,10 @@ function addInput(divName, selectionType, value){
 			 newdiv.innerHTML = htmlResult;			
 			 
 			 document.getElementById(divName).appendChild(newdiv);
-			
+			 
+			 extra = 'jform_profile_'+type;
+			 document.getElementById(extra).value +=1;
+			 			 
           updateBasket (value);
           if (divName=="dynamicInputMembers"){
 				addInput("dynamicInputSkills","",0)   
@@ -488,8 +494,8 @@ function ModalPopupsPrompt() {
 					}
 					?>
 				</table>
-				<div id="dynamicInputMembers">
-
+		<div id="dynamicInputMembers">
+				
 				</div>
 <?PHP
 
@@ -522,7 +528,15 @@ function ModalPopupsPrompt() {
 
 				?>
 							</div>
-
+<!--  						
+				<input type="text" readonly="true" name="jform[profile][individ]" id="jform_profile_individ" value=0 />
+	<BR/>			<input type="text" readonly="true" name="jform[profile][veteran]" id="jform_profile_veteran" value=0 />
+	<BR/>				<input type="text" readonly="true" name="jform[profile][famadu]" id="jform_profile_famadu" value=0 />
+			<BR/>		<input type="text" readonly="true" name="jform[profile][famjun]" id="jform_profile_famjun" value=0 />
+					<BR/><input type="text" readonly="true" name="jform[profile][junior]" id="jform_profile_junior" value=0 />
+					<BR/><input type="text" readonly="true" name="jform[profile][student]" id="jform_profile_student" value=0 />
+					<BR/><input type="text" readonly="true" name="jform[profile][nonsail]" id="jform_profile_nonsail" value=0 />
+		-->	
 		</div>
 	</fieldset>
 	<fieldset>
