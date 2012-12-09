@@ -14,10 +14,10 @@
 /**
  *  This section belongs in a language file but for portability its here.
  */
+define( 'AEC_MI_AECAUTOMATICPOSTCODEDISCOUNT_NAME', 'Automatic PostCode Discount' );
 
 
-
-class mi_aecautomaticsurcharge
+class mi_aecautomaticsurchargemultiply
 {
 	function Info()
 	{
