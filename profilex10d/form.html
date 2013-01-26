@@ -408,8 +408,8 @@ function ModalPopupsPrompt() {
         			<label class="form-label-left" id="label_9" for="input_9" > Address: </label>
         		</div>
         		<div class="form-cell">
-              		<input class="form-textbox form-address-line" type="text" name="jform[profile][address1]" id="jform_profile_address1" style="width: 302px;" value="<?php echo $data->profile['address1']; ?>"/>
-                  <label class="form-sub-label"> Street Address </label>
+              		<input class="form-textbox form-address-line validate[required]" type="text" name="jform[profile][address1]" id="jform_profile_address1" style="width: 302px;" value="<?php echo $data->profile['address1']; ?>"/>
+                  <label class="form-sub-label"> Street Address <span class="form-required">*</span></label>
             </div>
        	</div>
        	<div class="form-row">
@@ -423,8 +423,8 @@ function ModalPopupsPrompt() {
        	<div class="form-row">
        		<div class="form-cell"></div>
             <div class="form-cell">
-             		<input class="form-textbox form-address-city" type="text" name="jform[profile][city]" id="jform_profile_city" size="21" value="<?php echo $data->profile['city']; ?>"/>
-                  <label class="form-sub-label" for="input_9_city" id="sublabel_city"> City </label>
+             		<input class="form-textbox form-address-city validate[required]" type="text" name="jform[profile][city]" id="jform_profile_city" size="21" value="<?php echo $data->profile['city']; ?>"/>
+                  <label class="form-sub-label" for="input_9_city" id="sublabel_city"> City<span class="form-required">*</span></label>
             </div>   
             <div class="form-cell">
            			<input class="form-textbox form-address-state" type="text" name="jform[profile][county]" id="jform_profile_county" size="22" value="<?php echo $data->profile['county']; ?>"/>                  <label class="form-sub-label" for="input_9_state" id="sublabel_state"> County </label>
@@ -433,8 +433,8 @@ function ModalPopupsPrompt() {
        	<div class="form-row">
        		<div class="form-cell"></div>
             <div class="form-cell">
-						<input class="form-textbox form-address-postal" type="text" name="jform[profile][postcode]" id="jform_profile_postcode" size="10" value="<?php echo $data->profile['postcode']; ?>"/>
-                  <label class="form-sub-label" for="input_9_postal" id="sublabel_postal"> Postal Code </label>
+						<input class="form-textbox form-address-postal validate[required, custom[postcode]]" type="text" name="jform[profile][postcode]" id="jform_profile_postcode" size="10" value="<?php echo $data->profile['postcode']; ?>"/>
+                  <label class="form-sub-label" for="input_9_postal" id="sublabel_postal"> Postal Code <span class="form-required">*</span></label>
             </div>
             <div class="form-cell">
 					&nbsp;              

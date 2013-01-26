@@ -118,6 +118,12 @@
                     "regex": /^[0-9a-zA-Z]+$/,
                     "alertText": "* No special characters allowed"
                 },
+
+// Added by Shiny Shoe
+		"postcode": {
+		"regex": /^([A-PR-UWYZ0-9][A-HK-Y0-9][AEHMNPRTVXY0-9]?[ABEHMNPRVWXY0-9]? {1,2}[0-9][ABD-HJLN-UW-Z]{2}|GIR 0AA)$/,
+		"alertText": "* Invalid postcode"
+		},
                 // --- CUSTOM RULES -- Those are specific to the demos, they can be removed or changed to your likings
                 "ajaxUserCall": {
                     "url": "ajaxValidateFieldUser",
