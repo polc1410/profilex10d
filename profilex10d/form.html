@@ -514,8 +514,9 @@ function ModalPopupsPrompt() {
 					$key = searchForId('individ', $plans);
 					$type = "individ";
 				}
-				echo '<input type="button" id="adultMember" value="Add a sailing adult £'.$plans[$key][price].'" onClick="addInput(\'dynamicInputMembers\',\''.$type.'\','.$plans[$key][price].')">';
-
+				if ($plans[$_GET[usage]-1][desc] !="individ") {
+					echo '<input type="button" id="adultMember" value="Add a sailing adult £'.$plans[$key][price].'" onClick="addInput(\'dynamicInputMembers\',\''.$type.'\','.$plans[$key][price].')">';
+				}
 				$key = searchForId('nonsail', $plans);
 				echo '<input type="button" value="Add a non-sailing adult £'.$plans[$key][price].'" onClick="addInput(\'dynamicInputMembers\',\'nonsail\','.$plans[$key][price].')">';
 
