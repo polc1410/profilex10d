@@ -66,7 +66,12 @@ class plgUserProfile10 extends JPlugin
 		{
 			return true;
 		}
-
+		
+		// Check this is not the contact form.
+		if (in_array($context, array('com_contact', 'com_users.user'))) 
+		{
+			return true;
+		}
 
 
 
@@ -206,13 +211,13 @@ class plgUserProfile10 extends JPlugin
 			
 		$document =& JFactory::getDocument();
 		$document->addScript("http://code.jquery.com/jquery-1.8.3.js");
-		$document->addScript(JURI::base( )."media/profile10/scripts/formToWizard.js");
-		$document->addScript(JURI::base( )."media/profile10/scripts/jquery.validationEngine.js");
-		$document->addScript(JURI::base( )."media/profile10/scripts/jquery.validationEngine-en.js");
-		$document->addScript(JURI::base( )."http://code.jquery.com/ui/1.9.2/jquery-ui.js");
-		$document->addScript(JURI::base( )."media/profile10/scripts/ModalPopups.js");
-		$document->addStyleSheet(JURI::base( )."media/profile10/style/formProfile.css");
-		$document->addStyleSheet(JURI::base( )."media/profile10/style/validationEngine.jquery.css");
+		$document->addScript(JURI::root( )."media/profile10/scripts/formToWizard.js");
+		$document->addScript(JURI::root( )."media/profile10/scripts/jquery.validationEngine.js");
+		$document->addScript(JURI::root( )."media/profile10/scripts/jquery.validationEngine-en.js");
+		$document->addScript(JURI::root( )."http://code.jquery.com/ui/1.9.2/jquery-ui.js");
+		$document->addScript(JURI::root( )."media/profile10/scripts/ModalPopups.js");
+		$document->addStyleSheet(JURI::root( )."media/profile10/style/formProfile.css");
+		$document->addStyleSheet(JURI::root( )."media/profile10/style/validationEngine.jquery.css");
 		$document->addStyleSheet("http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css");
 		
 	 	include(JPATH_SITE."/plugins/user/profile10/form.html");
