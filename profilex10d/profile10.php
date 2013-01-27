@@ -56,24 +56,11 @@ class plgUserProfile10 extends JPlugin
 	 */
 	function onContentPrepareData($context, $data)
 	{
-
-
-
-
-
 		// Check we are manipulating a valid form.
 		if (!in_array($context, array('com_users.profile', 'com_users.user', 'com_users.registration', 'com_admin.profile')))
 		{
 			return true;
 		}
-		
-		// Check this is not the contact form.
-		if (in_array($context, array('com_contact', 'com_users.user'))) 
-		{
-			return true;
-		}
-
-
 
 		if (is_object($data))
 		{
@@ -97,9 +84,6 @@ class plgUserProfile10 extends JPlugin
 					return false;
 				}
 
-				// Merge the profile data.
-				$data->profile = array();
-
 				foreach ($results as $v)
 				{
 					$k = str_replace('profile.', '', $v[0]);
@@ -109,6 +93,8 @@ class plgUserProfile10 extends JPlugin
 						$data->profile[$k] = $v[1];
 					}
 				}
+
+				
 			}
 
 			if (!JHtml::isRegistered('users.url'))
@@ -181,6 +167,7 @@ class plgUserProfile10 extends JPlugin
 	 */
 	function onContentPrepareForm($form, $data)
 	{
+
 		if (!($form instanceof JForm))
 		{
 			$this->_subject->setError('JERROR_NOT_A_FORM');
@@ -194,18 +181,26 @@ class plgUserProfile10 extends JPlugin
 			return true;
 		}
 
-		$looped_fields = "";
+		$looped_fields = array();
 		for($loop = 1; $loop <= LOOP_COUNTER; $loop++ ) {
-			$looped_fields = $looped_fields . "'firstname".$loop."', 'lastname".$loop."', 'email".$loop."', 'dob".$loop."',  'mobile".$loop."', 'membertype".$loop."', ";
+			$fieldlist = array(
+				'firstname'.$loop, 
+				'lastname'.$loop, 
+				'email'.$loop, 
+				'dob'.$loop,  
+				'mobile'.$loop, 
+				'membertype'.$loop
+				) ;		
+			$looped_fields = array_merge($looped_fields , $fieldlist);
 			}
 
-		$fields = array(
+		$fields = array_merge(array(
 			'address1',
 			'address2',
 			'city',
 			'county',
 			'postcode',
-			'country',
+			'country'),
 			$looped_fields
 			);		
 			
@@ -219,18 +214,19 @@ class plgUserProfile10 extends JPlugin
 		$document->addStyleSheet(JURI::root( )."media/profile10/style/formProfile.css");
 		$document->addStyleSheet(JURI::root( )."media/profile10/style/validationEngine.jquery.css");
 		$document->addStyleSheet("http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css");
-		
+	
 	 	include(JPATH_SITE."/plugins/user/profile10/form.html");
 		
 	
 		
-		$form->removeField("name");
-		$form->removeField("username");
-				$form->removeField("password1");
-						$form->removeField("password2");
-								$form->removeField("email1");
-								$form->removeField("email2");
-		$form->removeGroup("default");
+		//$form->removeField("name");
+		//$form->removeField("username");
+		//		$form->removeField("password1");
+		//				$form->removeField("password2");
+		//						$form->removeField("email1");
+		//						$form->removeField("email2");
+		//$form->removeGroup("default");
+
 
 						
 								

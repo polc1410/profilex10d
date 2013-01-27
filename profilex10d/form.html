@@ -4,15 +4,15 @@
 		$filename=(JPATH_BASE . "/plugins/user/profile10/plans.txt");      
             $mappings = array();
             $id = fopen($filename, "r"); //open the file
-            $data = fgetcsv($id, filesize($filename), "\t"); 
+            $CSVdata = fgetcsv($id, filesize($filename), "\t"); 
             
             if(!$mappings){
-                $mappings = $data;
+                $mappings = $CSVdata;
             }
             
-            while($data = fgetcsv($id, filesize($filename), "\t")){
-                if($data[0]){
-                    foreach($data as $key => $value) 
+            while($CSVdata = fgetcsv($id, filesize($filename), "\t")){
+                if($CSVdata[0]){
+                    foreach($CSVdata as $key => $value) 
                         $converted_data[$mappings[$key]] = addslashes($value);
                         $arr[] = $converted_data; 
                       
@@ -213,8 +213,9 @@ function ModalPopupsPrompt() {
 
 
 </script>
-
-
+echo "<pre>";
+print_r($data);
+echo "</pre>";
 
  </DIV>
 <form class="jotform-form" method="POST" name ="jotform-form" id="jotform-form" action="<?php echo  JRoute::_( 'index.php?option=com_acctexp' ) ; ?>">
