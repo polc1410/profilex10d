@@ -213,10 +213,11 @@ function ModalPopupsPrompt() {
 
 
 </script>
+<?php
 echo "<pre>";
 print_r($data);
 echo "</pre>";
-
+?>
  </DIV>
 <form class="jotform-form" method="POST" name ="jotform-form" id="jotform-form" action="<?php echo  JRoute::_( 'index.php?option=com_acctexp' ) ; ?>">
 
@@ -238,12 +239,12 @@ echo "</pre>";
         			</div>
 
        			<div class="form-cell">
-						<input class="form-textbox validate[required]" type="text" size="10" name="jform[firstname]" id="jform_firstname" onblur="this.form.jform_profile_firstname1.value=this.form.jform_firstname.value;this.form.Name_Skills.value=this.form.jform_firstname.value+' '+this.form.jform_lastname.value;this.form.Name_News.value=this.form.Name_Skills.value;this.form.jform_name.value=this.form.Name_Skills.value;"/>
+						<input class="form-textbox validate[required]" value="<?php echo $data->profile['firstname1']; ?>" type="text" size="10" name="jform[firstname]" id="jform_firstname" onblur="this.form.jform_profile_firstname1.value=this.form.jform_firstname.value;this.form.Name_Skills.value=this.form.jform_firstname.value+' '+this.form.jform_lastname.value;this.form.Name_News.value=this.form.Name_Skills.value;this.form.jform_name.value=this.form.Name_Skills.value;"/>
         				<label class="form-sub-label" id="sublabel_first"> First Name </label>
        			</div>
        
        			<div class="form-cell">
-       				<input class="form-textbox validate[required]" type="text" size="15" name="jform[lastname]" id="jform_lastname" onblur="this.form.jform_profile_lastname1.value=this.form.jform_lastname.value;this.form.Name_Skills.value=this.form.jform_firstname.value+' '+this.form.jform_lastname.value;this.form.Name_News.value=this.form.Name_Skills.value;this.form.jform_name.value=this.form.Name_Skills.value;" />
+       				<input class="form-textbox validate[required]" value="<?php echo $data->profile['lastname1']; ?>" type="text" size="15" name="jform[lastname]" id="jform_lastname" onblur="this.form.jform_profile_lastname1.value=this.form.jform_lastname.value;this.form.Name_Skills.value=this.form.jform_firstname.value+' '+this.form.jform_lastname.value;this.form.Name_News.value=this.form.Name_Skills.value;this.form.jform_name.value=this.form.Name_Skills.value;" />
        				<label class="form-sub-label" for="last_4" id="sublabel_last"> Last Name </label>
        			</div>
        		</div>
