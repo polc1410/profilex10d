@@ -70,8 +70,8 @@ class plgUserProfile10 extends JPlugin
 
 
 
-		if (is_object($data))
-		{
+	//	if (is_object($data))
+	//	{
 			$userId = isset($data->id) ? $data->id : 0;
 
 			if (!isset($data->profile) and $userId > 0)
@@ -118,7 +118,7 @@ class plgUserProfile10 extends JPlugin
 			{
 				JHtml::register('users.tos', array(__CLASS__, 'tos'));
 			}
-		}
+		//}
 
 		return true;
 	}
@@ -193,6 +193,10 @@ class plgUserProfile10 extends JPlugin
 		for($loop = 1; $loop <= LOOP_COUNTER; $loop++ ) {
 			$looped_fields = $looped_fields . "'firstname".$loop."', 'lastname".$loop."', 'email".$loop."', 'dob".$loop."',  'mobile".$loop."', 'membertype".$loop."', ";
 			}
+			
+			// Add the registration fields to the form.
+		//JForm::addFormPath(dirname(__FILE__) . '/profiles');
+		//$form->loadFile('profile', false);
 
 		$fields = array(
 			'address1',
@@ -200,34 +204,38 @@ class plgUserProfile10 extends JPlugin
 			'city',
 			'county',
 			'postcode',
-			'country',
-			$looped_fields
+			'country'
 			);		
+			
+		//$form->removeField('address1','profile' );
 			
 		$document =& JFactory::getDocument();
 		$document->addScript("http://code.jquery.com/jquery-1.8.3.js");
-		$document->addScript(JURI::base( )."media/profile10/scripts/formToWizard.js");
-		$document->addScript(JURI::base( )."media/profile10/scripts/jquery.validationEngine.js");
-		$document->addScript(JURI::base( )."media/profile10/scripts/jquery.validationEngine-en.js");
-		$document->addScript(JURI::base( )."http://code.jquery.com/ui/1.9.2/jquery-ui.js");
-		$document->addScript(JURI::base( )."media/profile10/scripts/ModalPopups.js");
-		$document->addStyleSheet(JURI::base( )."media/profile10/style/formProfile.css");
-		$document->addStyleSheet(JURI::base( )."media/profile10/style/validationEngine.jquery.css");
+		if (JPATH_BASE == JPATH_SITE) {
+			$document->addScript(JURI::root( )."media/profile10/scripts/formToWizard.js");
+		}
+		$document->addScript(JURI::root( )."media/profile10/scripts/jquery.validationEngine.js");
+		$document->addScript(JURI::root( )."media/profile10/scripts/jquery.validationEngine-en.js");
+		$document->addScript("http://code.jquery.com/ui/1.9.2/jquery-ui.js");
+		$document->addScript(JURI::root( )."media/profile10/scripts/ModalPopups.js");
+		$document->addStyleSheet(JURI::root( )."media/profile10/style/formProfile.css");
+		$document->addStyleSheet(JURI::root( )."media/profile10/style/validationEngine.jquery.css");
 		$document->addStyleSheet("http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css");
-		
-	 	include(JPATH_SITE."/plugins/user/profile10/form.html");
-		
-	
-		
-		$form->removeField("name");
-		$form->removeField("username");
-				$form->removeField("password1");
-						$form->removeField("password2");
-								$form->removeField("email1");
-								$form->removeField("email2");
-		$form->removeGroup("default");
 
-						
+		if (JPATH_BASE == JPATH_SITE) {	
+	 		include(JPATH_SITE."/plugins/user/profile10/form.html");
+			
+			$form->removeField("name");
+			$form->removeField("username");
+					$form->removeField("password1");
+							$form->removeField("password2");
+									$form->removeField("email1");
+									$form->removeField("email2");
+			$form->removeGroup("default");
+
+	 	}	else {
+	 		include(JPATH_SITE."/plugins/user/profile10/form2.html");
+	 	}			
 								
 								
 		return true;
@@ -237,6 +245,10 @@ class plgUserProfile10 extends JPlugin
 	{
 		$userId	= JArrayHelper::getValue($data, 'id', 0, 'int');
 
+		if (!isset($data['profile'])){
+			$data['profile'] = $_POST['jform']['profile'];
+		}
+		
 		if ($userId && $result && isset($data['profile']) && (count($data['profile'])))
 		{
 			try

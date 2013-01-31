@@ -1,7 +1,7 @@
 <?PHP 
 
 	    //READ THE PRICE 
-		$filename=(JPATH_BASE . "/plugins/user/profile10/plans.txt");      
+		$filename=(JPATH_ROOT . "/plugins/user/profile10/plans.txt");      
             $mappings = array();
             $id = fopen($filename, "r"); //open the file
             $data = fgetcsv($id, filesize($filename), "\t"); 
@@ -40,13 +40,17 @@
 	   jQuery(document).ready(function(){
         jQuery("#jotform-form").validationEngine('attach');
       
+<?php
+		if (JPATH_BASE == JPATH_SITE){
+			echo "jQuery( '#jotform-form' ).formToWizard({\n";
+   			echo "	validateBeforeNext: function() {\n";
+      		echo "	//validationEngine is a jQuery validation plugin\n" ;
+      		echo "	return jQuery( '#jotform-form' ).validationEngine( 'validate' );\n";
+   			echo "}\n";
+   			echo "});\n";
+		}
+?>
 
-jQuery( '#jotform-form' ).formToWizard({
-   validateBeforeNext: function() {
-      //validationEngine is a jQuery validation plugin
-      return jQuery( '#jotform-form' ).validationEngine( 'validate' );
-   }
-});
  });
 
 var counter = 2;
@@ -85,7 +89,7 @@ function addInput(divName, selectionType, value){
 
 		 
           htmlResult = '<table id="memberTable'+counter+'"> <tr>\
-          <td><input type="text" name="jform[profile][firstname'+counter+']" id="jform_profile_firstname'+counter+'" onblur="this.form.Name_Skills'+counter+'.value=this.form.jform_profile_firstname'+counter+'.value.concat(space,this.form.jform_profile_lastname'+counter+'.value);this.form.Name_News'+counter+'.value=this.form.Name_Skills'+counter+'.value"/></td>\
+          <td><input type="text" name="jform[profile][firstname'+counter+']"  id="jform_profile_firstname'+counter+'" onblur="this.form.Name_Skills'+counter+'.value=this.form.jform_profile_firstname'+counter+'.value.concat(space,this.form.jform_profile_lastname'+counter+'.value);this.form.Name_News'+counter+'.value=this.form.Name_Skills'+counter+'.value"/></td>\
           <td><input type="text" name="jform[profile][lastname'+counter+']" id="jform_profile_lastname'+counter+'" onblur="this.form.Name_Skills'+counter+'.value=this.form.jform_profile_firstname'+counter+'.value.concat(space,this.form.jform_profile_lastname'+counter+'.value);this.form.Name_News'+counter+'.value=this.form.Name_Skills'+counter+'.value;" /></td>\
           <td><input class="formInfo" src="<?PHP echo JURI::base(); ?>media/profile10/images/duplicate.png" alt="Use Previous" type="image", onclick="this.form.jform_profile_email'+counter+'.value=this.form.jform_profile_email1.value;return false;"></td>\
           <td><input type="email" class="validate[custom[email]]" name="jform[profile][email'+counter+']" id="jform_profile_email'+counter+'" /></td>\
@@ -302,15 +306,29 @@ function ModalPopupsPrompt() {
 
 
  </DIV>
-<form class="jotform-form" method="POST" name ="jotform-form" id="jotform-form" action="<?php echo  JRoute::_( 'index.php?option=com_acctexp' ) ; ?>">
+<form class="jotform-form form-validate" method="POST" name ="jotform-form" id="jotform-form" action="<?php echo  JRoute::_( 'index.php?option=com_acctexp' ) ; ?>">
 
 	<div class="Cart"><ul class="list-icon cart"><li>
 		Current value: &pound;<input name="Basket" id="Basket" value="<?PHP echo $plans[$_GET[usage]-1][price];?>" class="formInfo" size="5" readonly="true" />
 		</li></ul></div>
-	
+
 	<fieldset>
 		<legend>Contact Info</legend>
 	 	<div class="form-all">
+	 	<?php
+	 	
+	 	jimport( 'joomla.user.helper' ); 
+		$user =& JFactory::getUser();
+		$uid = $user->id; 
+
+		if (JPATH_BASE != JPATH_SITE){
+			if ($_GET['id']) {
+				$uid = $_GET['id'];
+			}
+		}
+		$userProfile = JUserHelper::getProfile($uid);
+	 	$userFields = JFactory::getUser($uid);	 
+		?>
     		<div class="field-group">
      			<div class="form-row">
      				<div class="form-cell">
@@ -320,12 +338,12 @@ function ModalPopupsPrompt() {
         			</div>
 
        			<div class="form-cell">
-						<input class="form-textbox validate[required]" type="text" size="10" name="jform[firstname]" id="jform_firstname" onblur="this.form.jform_profile_firstname1.value=this.form.jform_firstname.value;this.form.Name_Skills.value=this.form.jform_firstname.value+' '+this.form.jform_lastname.value;this.form.Name_News.value=this.form.Name_Skills.value;this.form.jform_name.value=this.form.Name_Skills.value;"/>
+						<input class="form-textbox validate[required]" value="<?PHP  echo $userProfile->profile['firstname1'];?>" type="text" size="10" name="jform[firstname]" id="jform_firstname" onblur="this.form.jform_profile_firstname1.value=this.form.jform_firstname.value;this.form.Name_Skills.value=this.form.jform_firstname.value+' '+this.form.jform_lastname.value;this.form.Name_News.value=this.form.Name_Skills.value;this.form.jform_name.value=this.form.Name_Skills.value;"/>
         				<label class="form-sub-label" id="sublabel_first"> First Name </label>
        			</div>
        
        			<div class="form-cell">
-       				<input class="form-textbox validate[required]" type="text" size="15" name="jform[lastname]" id="jform_lastname" onblur="this.form.jform_profile_lastname1.value=this.form.jform_lastname.value;this.form.Name_Skills.value=this.form.jform_firstname.value+' '+this.form.jform_lastname.value;this.form.Name_News.value=this.form.Name_Skills.value;this.form.jform_name.value=this.form.Name_Skills.value;" />
+       				<input class="form-textbox validate[required]" value="<?PHP  echo $userProfile->profile['lastname1'];?>" type="text" size="15" name="jform[lastname]" id="jform_lastname" onblur="this.form.jform_profile_lastname1.value=this.form.jform_lastname.value;this.form.Name_Skills.value=this.form.jform_firstname.value+' '+this.form.jform_lastname.value;this.form.Name_News.value=this.form.Name_Skills.value;this.form.jform_name.value=this.form.Name_Skills.value;" />
        				<label class="form-sub-label" for="last_4" id="sublabel_last"> Last Name </label>
        			</div>
        		</div>
@@ -335,24 +353,24 @@ function ModalPopupsPrompt() {
      			<div class="form-row">
      				<div class="form-cell">
         				<label class="form-label-left" id="label_5" for="input_5">
-          				E-mail:<span class="form-required">*</span>
+          				Email:<span class="form-required">*</span>
         				</label>
         			</div>
         					
 	     			<div class="form-cell">
-          			<input type="email" class="form-textbox validate[required, custom[email]]" id="jform_email1" name="jform[email1]" size="30" onblur="this.form.jform_profile_email1.value=this.form.jform_email1.value;" />
+          			<input type="email" class="form-textbox validate[required, custom[email]] validate-email" value="<?PHP  echo $userProfile->profile['email1'];?>" id="jform_email1" name="jform[email1]" size="30" onblur="this.form.jform_profile_email1.value=this.form.jform_email1.value;" />
      				</div>
      			</div>
 
      			<div class="form-row">
      				<div class="form-cell">
         				<label class="form-label-left" id="label_5" for="input_5">
-          				Confirm&nbsp;E-mail:<span class="form-required">*</span>
+          				Confirm&nbsp;Email:<span class="form-required">*</span>
         				</label>
         			</div>
 
 			      <div class="form-cell">
-          			<input type="email" class="form-textbox validate[required, equals[jform_email1]]" id="jform_email2" name="jform[email2]"  size="30" />
+          			<input type="email" class="form-textbox validate[required, equals[jform_email1]]" value="<?PHP  echo $userProfile->profile['email1'];?>" id="jform_email2" name="jform[email2]"  size="30" />
         			</div>
         		</div>
         	</div>
@@ -367,7 +385,7 @@ function ModalPopupsPrompt() {
         					
         			<div class="form-cell">
         				<div id="cid_6" class="form-input">
-          				<input type="text" class="form-textbox validate[required]" id="jform_username" name="jform[username]" size="20" />
+          				<input type="text" class="form-textbox validate[required]" value="<?PHP  echo $userFields->username;?>" id="jform_username" name="jform[username]" size="20" />
    	     			</div>
       	  		</div>
 	
@@ -408,7 +426,7 @@ function ModalPopupsPrompt() {
         			<label class="form-label-left" id="label_9" for="input_9" > Address: </label>
         		</div>
         		<div class="form-cell">
-              		<input class="form-textbox form-address-line" type="text" name="jform[profile][address1]" id="jform_profile_address1" style="width: 302px;" value="<?php echo $data->profile['address1']; ?>"/>
+              		<input class="form-textbox form-address-line" value="<?PHP  echo $userProfile->profile['address1'];?>" type="text" name="jform[profile][address1]" id="jform_profile_address1" style="width: 302px;" value="<?php echo $data->profile['address1']; ?>"/>
                   <label class="form-sub-label"> Street Address </label>
             </div>
        	</div>
@@ -416,24 +434,24 @@ function ModalPopupsPrompt() {
        		<div class="form-cell">
        		</div>
        		<div class="form-cell">
-            		<input class="form-textbox form-address-line" type="text" name="jform[profile][address2]" id="jform_profile_address2" style="width: 302px;" value="<?php echo $data->profile['address2']; ?>" />
+            		<input class="form-textbox form-address-line" type="text" name="jform[profile][address2]" value="<?PHP  echo $userProfile->profile['address2'];?>" id="jform_profile_address2" style="width: 302px;" value="<?php echo $data->profile['address2']; ?>" />
                   <label class="form-sub-label" for="input_9_addr_line2" id="sublabel_addr_line2"> Street Address Line 2 </label>
             </div>
          </div>
        	<div class="form-row">
        		<div class="form-cell"></div>
             <div class="form-cell">
-             		<input class="form-textbox form-address-city" type="text" name="jform[profile][city]" id="jform_profile_city" size="21" value="<?php echo $data->profile['city']; ?>"/>
+             		<input class="form-textbox form-address-city" value="<?PHP  echo $userProfile->profile['city'];?>" type="text" name="jform[profile][city]" id="jform_profile_city" size="21" value="<?php echo $data->profile['city']; ?>"/>
                   <label class="form-sub-label" for="input_9_city" id="sublabel_city"> City </label>
             </div>   
             <div class="form-cell">
-           			<input class="form-textbox form-address-state" type="text" name="jform[profile][county]" id="jform_profile_county" size="22" value="<?php echo $data->profile['county']; ?>"/>                  <label class="form-sub-label" for="input_9_state" id="sublabel_state"> County </label>
+           			<input class="form-textbox form-address-state" value="<?PHP  echo $userProfile->profile['county'];?>" type="text" name="jform[profile][county]" id="jform_profile_county" size="22" value="<?php echo $data->profile['county']; ?>"/>                  <label class="form-sub-label" for="input_9_state" id="sublabel_state"> County </label>
             </div>
          </div>
        	<div class="form-row">
        		<div class="form-cell"></div>
             <div class="form-cell">
-						<input class="form-textbox form-address-postal" type="text" name="jform[profile][postcode]" id="jform_profile_postcode" size="10" value="<?php echo $data->profile['postcode']; ?>"/>
+						<input class="form-textbox form-address-postal" type="text" name="jform[profile][postcode]" value="<?PHP  echo $userProfile->profile['postcode'];?>" id="jform_profile_postcode" size="10" value="<?php echo $data->profile['postcode']; ?>"/>
                   <label class="form-sub-label" for="input_9_postal" id="sublabel_postal"> Postal Code </label>
             </div>
             <div class="form-cell">
@@ -468,16 +486,16 @@ function ModalPopupsPrompt() {
 					</thead>
 					<?php
 					for ($row=1; $row<=LOOP_COUNTER; $row++) {
-					if ($row == 1 || $data->profile['membertype'.$row ] != "") {
+					if ($row == 1 || $userProfile->profile['membertype'.$row ] != "") {
 					echo '<tr>';
-						echo '<td><input class="formInfo" type="text" name="jform[profile][firstname'.$row.']" id="jform_profile_firstname'.$row.'" readonly="true" value="'.$data->profile["firstname".$row].'"/></td>';
-						echo '<td><input class="formInfo" type="text" name="jform[profile][lastname'.$row.']" id="jform_profile_lastname'.$row.'" readonly="true" value="'.$data->profile["lastname".$row].'"/></td>';
-						echo '<td><img src="'.JURI::base(). 'media/plugins/images/blank.png" alt="" ></td>';
-						echo '<td><input class="formInfo validate[custom[email]]" type="email" name="jform[profile][email'.$row.']" id="jform_profile_email'.$row.'" readonly="true" value="'.$data->profile["email".$row].'"/></td>';
+						echo '<td><input class="formInfo" type="text" name="jform[profile][firstname'.$row.']" id="jform_profile_firstname'.$row.'" readonly="true" value="'.$userProfile->profile["firstname".$row].'"/></td>';
+						echo '<td><input class="formInfo" type="text" name="jform[profile][lastname'.$row.']" id="jform_profile_lastname'.$row.'" readonly="true" value="'.$userProfile->profile["lastname".$row].'"/></td>';
+						echo '<td><img src="'.JURI::root(). 'media/plugins/images/blank.png" alt="" ></td>';
+						echo '<td><input class="formInfo validate[custom[email]]" type="email" name="jform[profile][email'.$row.']" id="jform_profile_email'.$row.'" readonly="true" value="'.$userProfile->profile["email".$row].'"/></td>';
 
 						$validateDob = "";
 						foreach($plans as $plan) {  
-   							if ($data->profile["membertype".$row].$plans[$_GET[usage]-1][desc] == $plan[desc] ) { 
+   							if ($userProfile->profile["membertype".$row].$plans[$_GET[usage]-1][desc] == $plan[desc] ) { 
  								if ($plan[dob] == "Y") {
  									if ( $plan[dobCk] == ">" ) { 			
  										$validateDob = "future[".$plan[dobLimit].", required]";
@@ -489,9 +507,9 @@ function ModalPopupsPrompt() {
 						} 
 
 						echo '<td><span style="white-space:nowrap;">';
-						echo JHTML::calendar('','jform[profile][dob'.$row.']','jform_profile_dob'.$row,'%Y-%m-%d', 'size="12" class="datefield validate[custom[date], '.$validateDob.'] datepicker"') . "</span></td>";
-						echo '<td><input class="validate[custom[phone]]" type="phone" name="jform[profile][mobile'.$row.']" id="jform_profile_mobile'.$row.'" value="'.$data->profile["mobile".$row].'"/></td>';
-						echo '<td><input class="formInfo" type="text" readonly="true" name="jform[profile][membertype'.$row.']" id="jform_profile_membertype'.$row.'" value="'.$data->profile["membertype".$row].$plans[$_GET[usage]-1][desc].'" size ="6"/></td>';
+						echo JHTML::calendar($userProfile->profile['dob'.$row],'jform[profile][dob'.$row.']','jform_profile_dob'.$row,'%Y-%m-%d', 'size="12" class="datefield validate[custom[date], '.$validateDob.'] datepicker"') . "</span></td>";
+						echo '<td><input class="validate[custom[phone]]" value="'.$userProfile->profile['phone'.$row].'" type="phone" name="jform[profile][mobile'.$row.']" id="jform_profile_mobile'.$row.'" value="'.$data->profile["mobile".$row].'"/></td>';
+						echo '<td><input class="formInfo" type="text" value="'.$userProfile->profile['membertype'.$row].'" readonly="true" name="jform[profile][membertype'.$row.']" id="jform_profile_membertype'.$row.'" value="'.$data->profile["membertype".$row].$plans[$_GET[usage]-1][desc].'" size ="6"/></td>';
 					echo '</tr>';
 					} 					
 					}
