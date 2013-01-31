@@ -80,15 +80,15 @@ function addInput(divName, selectionType, value){
 		 ?>
          
           htmlResult = '<table id="memberTable'+counter+'"> <tr> 	<td><input type="text" name="jform[profile][firstname'+counter+']" id="jform_profile_firstname'+counter+'" onblur="this.form.Name_Skills'+counter+'.value=this.form.jform_profile_firstname'+counter+'.value.concat(space,this.form.jform_profile_lastname'+counter+'.value);this.form.Name_News'+counter+'.value=this.form.Name_Skills'+counter+'.value"/></td> 	<td><input type="text" name="jform[profile][lastname'+counter+']" id="jform_profile_lastname'+counter+'" onblur="this.form.Name_Skills'+counter+'.value=this.form.jform_profile_firstname'+counter+'.value.concat(space,this.form.jform_profile_lastname'+counter+'.value);this.form.Name_News'+counter+'.value=this.form.Name_Skills'+counter+'.value;" /></td><td><input class="formInfo" src="<?PHP echo JURI::root(); ?>media/profile10/images/duplicate.png" alt="Use Previous" type="image", onclick="this.form.jform_profile_email'+counter+'.value=this.form.jform_profile_email1.value;return false;"></td><td><input type="email" class="validate[custom[email]]" name="jform[profile][email'+counter+']" id="jform_profile_email'+counter+'" /></td> <td><input type="date" class="'+validateDob+'" name="jform[profile][dob'+counter+']" onchange="validateDob('+counter+')" id="jform_profile_dob'+counter+'" /></td> <td><input type="phone" name="jform[profile][mobile'+counter+']" id="jform_profile_mobile'+counter+'" /></td> <td><div class="form-cell" style="white-space:nowrap; "><input type="image" src="<?PHP echo JURI::base(); ?>media/profile10/images/delete.png" onclick="deleteRow(\'memberTable'+counter+'\'); deleteRow(\'skillsTable'+counter+'\'); deleteRow(\'newsTable'+counter+'\');updateBasket(-'+value+');return false;"/><input type="text" class="formInfo" name="jform[profile][membertype'+counter+']" id="jform_profile_membertype'+counter+'"  value ="'+selectionType+'" readonly="true" /></div></td></tr></table>';
-          if (selectionType =="famAdu") {
-            <?PHP
-            $key = searchForId('individ', $plans);
-			$type = "individ";
-			?>
-          	document.getElementById("adultMember").value="Add a sailing adult £<?PHP echo $plans[$key][price];?>";
-            document.getElementById("adultMember").onclick=function(){addInput('dynamicInputMembers','<?PHP echo $type; ?>',<?PHP echo $plans[$key][price];?>);};
-          	
-          }	
+   //       if (selectionType =="famAdu") {
+   //         <?PHP
+   //         $key = searchForId('individ', $plans);
+	//		$type = "individ";
+	//		?>
+    //      	document.getElementById("adultMember").value="Add a sailing adult £<?PHP echo $plans[$key][price];?>";
+    //        document.getElementById("adultMember").onclick=function(){addInput('dynamicInputMembers','<?PHP echo $type; ?>',<?PHP echo $plans[$key][price];?>);};
+    //      	
+    //      }	
 			
 			 break;
 			case "dynamicInputBoats":
@@ -102,12 +102,52 @@ function addInput(divName, selectionType, value){
 
        
 			 case "dynamicInputSkills":
-			 htmlResult = '<div class="field-group" id="skillsTable'+counter+'"> <div class="form-row"> 	<div class="formSkills-member"><input class="formInfo" type="text" name="Name_Skills'+counter+'" readonly="true" /></div>	<div class="formSkills-cell"><input type="checkbox" name="RYA1"/></div> 	<div class="formSkills-cell"><input type="checkbox" name="RYA2"/></div> 	<div class="formSkills-cell"><input type="checkbox" id="ADI'+counter+'" name="ADI" onchange="setNews(\'Instructor\','+counter+', this.form.ADI'+counter+'.checked);"/></div> 	<div class="formSkills-cell"><input id="DI'+counter+'" type="checkbox" name="DI"onchange="setNews(\'Instructor\','+counter+', this.form.DI'+counter+'.checked);"/></div> 	<div class="formSkills-cell"><input type="checkbox" name="SDI" id="SDI'+counter+'" onchange="setNews(\'Instructor\','+counter+', this.form.SDI'+counter+'.checked);"/></div> 	<div class="formSkills-cell"><input type="checkbox" name="AWI" id="AWI'+counter+'" onchange="setNews(\'Instructor\','+counter+', this.form.AWI'+counter+'.checked);"/></div> 	<div class="formSkills-cell"><input type="checkbox" name="WI" id="WI'+counter+'" onchange="setNews(\'Instructor\','+counter+', this.form.WI'+counter+'.checked);"/></div> <div class="formSkills-cell"><input type="checkbox" name="SWI" id="SWI'+counter+'" onchange="setNews(\'Instructor\','+counter+', this.form.SWI'+counter+'.checked);"/></div> <div class="formSkills-cell"><input type="checkbox" name="PB2"/></div> <div class="formSkills-cell"><input type="checkbox" name="safetyboat"/></div> <div class="formSkills-cell"><input type="checkbox" name="PBInst" id="PBInst'+counter+'" onchange="setNews(\'Instructor\','+counter+', this.form.PBInst'+counter+'.checked);"/></div> <div class="formSkills-cell"><input type="checkbox" name="coach" id="coach'+counter+'"/></div> <div class="formSkills-cell"><input type="checkbox" name="firstaid"/></div> <div class="formSkills-cell"><input type="checkbox" name="firstaid_instructor" id="firstaid_instructor'+counter+'" onchange="setNews(\'Instructor\','+counter+', this.form.firstaid_instructor'+counter+'.checked);"/></div> 	</div> </dive>';
+
+			 htmlResult = '<div class="field-group" id="skillsTable'+counter+'"> <div class="form-row">' ;
+			 htmlResult += '<div class="formSkills-member"><input class="formInfo" type="text" name="Name_Skills'+counter+'" readonly="true" /></div>';
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox" id="jform_profile_RYA1_'+counter+'" name="jform[profile][RYA1_'+counter+']"/></div>' ;
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox" id="jform_profile_RYA2_'+counter+'" name="jform[profile][RYA2_'+counter+']"/></div>';
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox" id="jform_profile_ADI_'+counter+'" name="jform[profile][ADI_'+counter+']" onchange="setNews(\'Instructor\','+counter+', this.form.jform_profile_ADI_'+counter+'.checked);"/></div>';
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox" id="jform_profile_DI_'+counter+'" name="jform[profile][DI_'+counter+']" onchange="setNews(\'Instructor\','+counter+', this.form.jform_profile_DI_'+counter+'.checked);"/></div>';
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox" id="jform_profile_SDI_'+counter+'" name="jform[profile][SDI_'+counter+']" onchange="setNews(\'Instructor\','+counter+', this.form.jform_profile_SDI_'+counter+'.checked);"/></div>';
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox" id="jform_profile_AWI_'+counter+'" name="jform[profile][AWI_'+counter+']" onchange="setNews(\'Instructor\','+counter+', this.form.jform_profile_AWI_'+counter+'.checked);"/></div>';
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox" id="jform_profile_WI_'+counter+'" name="jform[profile][WI_'+counter+']" onchange="setNews(\'Instructor\','+counter+', this.form.jform_profile_WI_'+counter+'.checked);"/></div>';
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox" id="jform_profile_SWI_'+counter+'" name="jform[profile][SWI_'+counter+']" onchange="setNews(\'Instructor\','+counter+', this.form.jform_profile_SWI_'+counter+'.checked);"/></div>';
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox" id="jform_profile_PB2_'+counter+'" name="jform[profile][PB2_'+counter+']" /></div>';
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox" id="jform_profile_safetyboat_'+counter+'" name="jform[profile][safetyboat_'+counter+']"/></div>';
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox" id="jform_profile_PBInst_'+counter+'" name="jform[profile][PBInst_'+counter+']" onchange="setNews(\'Instructor\','+counter+', this.form.jform_profile_PBInst_'+counter+'.checked);"/></div>';
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox" id="jform_profile_coach_'+counter+'" name="jform[profile][coach_'+counter+']" onchange="setNews(\'Instructor\','+counter+', this.form.jform_profile_coach_'+counter+'.checked);"/></div>';
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox" id="jform_profile_firstaid_'+counter+'" name="jform[profile][firstaid_'+counter+']"/></div>';
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox" id="jform_profile_firstaid_instructor_'+counter+'" name="jform[profile][firstaid_instructor_'+counter+']" onchange="setNews(\'Instructor\','+counter+', this.form.jform_profile_firstaid_instructor_'+counter+'.checked);"/></div>';
+			 htmlResult += '</div></div>';
+
+
+
+
 			
 			 break;
 			 
 			  case "dynamicInputNews":
-			 htmlResult = '<div class="field-group" id="newsTable'+counter+'"> <div class="form-row"> 	<div class="formSkills-member"><input class="formInfo" type="text" name="Name_News'+counter+'" readonly="true" /></div> 	<div class="formSkills-cell"><input type="checkbox" name="GenNews" checked="checked"/></div> 	<div class="formSkills-cell"><input type="checkbox" name="JuniorNews" id="JuniorSailing'+counter+'"/></div> 	<div class="formSkills-cell"><input type="checkbox" name="Team15" id="JuniorWindsurfing'+counter+'"/></div> 	<div class="formSkills-cell"><input type="checkbox" name="Windsurf" id="Windsurf'+counter+'"/></div> 	<div class="formSkills-cell"><input type="checkbox" name="Perf"/></div> 	<div class="formSkills-cell"><input type="checkbox" name="F15" id="FlyingFifteen'+counter+'"/></div> 	<div class="formSkills-cell"><input type="checkbox" name="RS200" id="RS-200'+counter+'"/></div> <div class="formSkills-cell"><input type="checkbox" name="Laser" id="Laser'+counter+'"/></div> <div class="formSkills-cell"><input type="checkbox" name="GP14" id="GP14'+counter+'"/></div> <div class="formSkills-cell"><input type="checkbox" name="Topper" id="Topper'+counter+'"/></div> <div class="formSkills-cell"><input type="checkbox" name="Topaz" id="Topaz'+counter+'"/></div> <div class="formSkills-cell"><input type="checkbox" name="Mirror" id="Mirror'+counter+'"/></div> <div class="formSkills-cell"><input type="checkbox" name="Optimist" id="Optimist'+counter+'"/></div> <div class="formSkills-cell"><input type="checkbox" name="Handicap" id="Handicap'+counter+'"/></div> <div class="formSkills-cell"><input id="Instructor'+counter+'" type="checkbox" name="Instructor"/></div> 	</div> 	</div>';
+
+			 htmlResult = '<div class="field-group"> <div class="form-row">' ;
+			 htmlResult += '<div class="formSkills-member"><input class="formInfo" type="text" name="Name_News'+counter+'" readonly="true" value="" /></div>';
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox" checked="yes" id="jform_profile_RYA1_'+counter+'" name="jform[profile][RYA1_'+counter+']"/></div>';
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox"  id="jform_profile_RYA2_'+counter+'" name="jform[profile][RYA2_'+counter+']"/></div>';
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox"  id="jform_profile_ADI_'+counter+'" name="jform[profile][ADI_'+counter+']" onchange="setNews(\'Instructor\','+counter+', this.form.jform_profile_ADI_'+counter+'.checked);" /></div>';
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox"  id="jform_profile_DI_'+counter+'" name="jform[profile][DI_'+counter+']" onchange="setNews(\'Instructor\','+counter+', this.form.jform_profile_DI_'+counter+'.checked);" /></div>';
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox"  id="jform_profile_SDI_'+counter+'" name="jform[profile][SDI_'+counter+']" onchange="setNews(\'Instructor\','+counter+', this.form.jform_profile_SDI_'+counter+'.checked);" /></div>';									
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox"  id="jform_profile_AWI_'+counter+'" name="jform[profile][AWI_'+counter+']" onchange="setNews(\'Instructor\','+counter+', this.form.jform_profile_AWI_'+counter+'.checked);" /></div>';
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox"  id="jform_profile_WI_'+counter+'" name="jform[profile][WI_'+counter+']" onchange="setNews(\'Instructor\','+counter+', this.form.jform_profile_WI_'+counter+'.checked);"; /></div>';
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox"  id="jform_profile_SWI_'+counter+'" name="jform[profile][SWI_'+counter+']" onchange="setNews(\'Instructor\','+counter+', this.form.jform_profile_SWI_'+counter+'.checked);" /></div>';
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox"  id="jform_profile_PB2_'+counter+'" name="jform[profile][PB2_'+counter+']"/></div>';
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox"  id="jform_profile_safetyboat_'+counter+'" name="jform[profile][safetyboat_'+counter+']"/></div>';
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox"  id="jform_profile_PBInst_'+counter+'" name="jform[profile][PBInst_'+counter+']" onchange="setNews(\'Instructor\','+counter+', this.form.jform_profile_PBInst_'+counter+'.checked);" /></div>';
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox"  id="jform_profile_coach_'+counter+'" name="jform[profile][coach_'+counter+']" onchange="setNews(\'Instructor\','+counter+', this.form.jform_profile_coach_'+counter+'.checked);" /></div>';
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox"  id="jform_profile_firstaid_'+counter+'" name="jform[profile][firstaid_'+counter+']" onchange="setNews(\'Instructor\','+counter+', this.form.jform_profile_firstaid_'+counter+'.checked);" /></div>';
+			 htmlResult += '<div class="formSkills-cell"><input type="checkbox"  id="jform_profile_firstaid_instructor_'+counter+'" name="jform[profile][firstaid_instructor_'+counter+']" onchange="setNews(\'Instructor\','+counter+', this.form.jform_profile_firstaidIinstructor_'+counter+'.checked);" /></div>';
+			 htmlResult += '</div> </div>' ;
+
+
 			 break;
 			 
 			 default:
@@ -213,11 +253,7 @@ function ModalPopupsPrompt() {
 
 
 </script>
-<?php
-echo "<pre>";
-print_r($data);
-echo "</pre>";
-?>
+
  </DIV>
 <form class="jotform-form" method="POST" name ="jotform-form" id="jotform-form" action="<?php echo  JRoute::_( 'index.php?option=com_acctexp' ) ; ?>">
 
@@ -259,10 +295,12 @@ echo "</pre>";
         			</div>
         					
 	     			<div class="form-cell">
-          			<input type="email" class="form-textbox validate[required, custom[email]]" id="jform_email1" name="jform[email1]" size="30" onblur="this.form.jform_profile_email1.value=this.form.jform_email1.value;" />
+          			<input type="email" <?php if($data->profile['email1']): ?>value="<?php echo $data->profile['email1']; ?>"<?php endif;?> class="form-textbox validate[required, custom[email]]" id="jform_email1" name="jform[email1]" size="30" onblur="document.getElementById('jform_profile_email1').value = document.getElementById('jform_email1').value;" />
      				</div>
      			</div>
-
+				<?php
+				if ( JURI::root( ) == JURI::base() ) :
+				?>
      			<div class="form-row">
      				<div class="form-cell">
         				<label class="form-label-left" id="label_5" for="input_5">
@@ -270,10 +308,13 @@ echo "</pre>";
         				</label>
         			</div>
 
-			      <div class="form-cell">
-          			<input type="email" class="form-textbox validate[required, equals[jform_email1]]" id="jform_email2" name="jform[email2]"  size="30" />
+			        <div class="form-cell">
+          			    <input type="email" class="form-textbox validate[required, equals[jform_email1]]" id="jform_email2" name="jform[email2]"  size="30" />
         			</div>
         		</div>
+        		 <?php
+        		 endif;
+        		 ?>
         	</div>
 
          <div class="field-group">
@@ -286,7 +327,7 @@ echo "</pre>";
         					
         			<div class="form-cell">
         				<div id="cid_6" class="form-input">
-          				<input type="text" class="form-textbox validate[required]" id="jform_username" name="jform[username]" size="20" />
+          				<input type="text" value="<?php echo $data->username; ?>" class="form-textbox validate[required]" id="jform_username" name="jform[username]" size="20" />
    	     			</div>
       	  		</div>
 	
@@ -294,16 +335,26 @@ echo "</pre>";
    	      <div class="form-row">
      				<div class="form-cell">
         				<label class="form-label-left" id="label_6" for="input_6">
-          				Password:<span class="form-required">*</span>
+          				Password:<?php
+          				$pass_req="";
+				if ( JURI::root( ) == JURI::base() ) :
+				$pass_req="validate[required]";
+				?><span class="form-required">*</span>
+				        		<?php
+        		 endif;
+        		 ?>
         				</label>
         			</div>
         
     	    		<div class="form-cell">
       	  			<div id="cid_6" class="form-input">
-         	 			<input type="password" class="form-textbox validate[required]" id="jform_password1" name="jform[password1]" size="20" />
+         	 		<input type="password" class="form-textbox <?php echo $pass_req; ?>" id="jform_password1" name="jform[password1]" size="20" />
         				</div>
         			</div>
   	      	</div>
+        				<?php
+				if ( JURI::root( ) == JURI::base() ) :
+				?>
         
    	     	<div class="form-row">
      				<div class="form-cell">
@@ -315,9 +366,12 @@ echo "</pre>";
      	   		<div class="form-cell">
       	  			<div id="cid_6" class="form-input">
          	 			<input type="password" class="form-textbox validate[required, equals[jform_password1]]" id="jform_password2" name="jform[password2]" size="20" />
-        				</div>
         			</div>
-    	    	</div>
+        		</div>
+    	    </div>
+    	            		<?php
+        		 endif;
+        		 ?>
       	</div>
       
  
@@ -412,10 +466,10 @@ echo "</pre>";
 							} 
 						} 
 
-						echo '<td>';
-echo JHTML::calendar('','jform[profile][dob'.$row.']','jform_profile_dob'.$row,'%Y-%m-%d', 'size="12" class="validate[custom[date], '.$validateDob.'] datepicker"') . "</td>";
-						echo '<td><input class="validate[custom[phone]]" type="phone" name="jform[profile][mobile'.$row.']" id="jform_profile_mobile'.$row.'" value="'.$data->profile["mobile".$row].'"/></td>';
-						echo '<td><input class="formInfo" type="text" readonly="true" name="jform[profile][membertype'.$row.']" id="jform_profile_membertype'.$row.'" value="'.$data->profile["membertype".$row].$plans[$_GET[usage]-1][desc].'" size ="6"/></td>';
+						echo '<td width="20em">';
+echo JHTML::calendar($data->profile['dob'.$row],'jform[profile][dob'.$row.']','jform_profile_dob'.$row,'%Y-%m-%d', 'size="12" class="validate[custom[date], '.$validateDob.'] datepicker"') . "</td>";
+					echo '<td><input class="validate[custom[phone]]" value="'.$data->profile[mobile.$row].'" type="phone" name="jform[profile][mobile'.$row.']" id="jform_profile_mobile'.$row.'" /></td>';
+						echo '<td><input class="formInfo"  type="text" readonly="true" name="jform[profile][membertype'.$row.']" id="jform_profile_membertype'.$row.'" value="'. $data->profile['membertype'.$row] . $plans[$_GET[usage]-1][desc].'" size ="6"/></td>';
 					echo '</tr>';
 					} 					
 					}
@@ -485,6 +539,8 @@ echo JHTML::calendar('','jform[profile][dob'.$row.']','jform_profile_dob'.$row,'
 		<div class="form-all">
 			<p>We'd like to know about your existing sailing skills so that we can help you get sailing with the club as quickly as possible.  Please let us know if you have any of the following qualifications.</p>
 			<div class="field-group">
+			
+
 				<div class="form-row">
 					<div class="formSkills-member">Member</div>
 					<div class="formSkills-cell">RYA1</div>
@@ -503,25 +559,35 @@ echo JHTML::calendar('','jform[profile][dob'.$row.']','jform_profile_dob'.$row,'
 					<div class="formSkills-cell">First Aid Instruct</div>
 				</div>
 			</div>
-			<div class="field-group">
+
+				<?php
+				for ($row=1; $row<=LOOP_COUNTER; $row++) {
+				  if ($row == 1 || $data->profile['membertype'.$row ] != "") {
+				?>
+							<div class="field-group">
 				<div class="form-row">
-					<div class="formSkills-member"><input class="formInfo" type="text" name="Name_Skills" readonly="true" /></div>
-					<div class="formSkills-cell"><input type="checkbox" name="RYA1"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="RYA2"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="ADI" id="ADI1" onchange="setNews('Instructor',1, this.form.ADI1.checked);"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="DI"id="DI1" onchange="setNews('Instructor',1, this.form.DI1.checked);"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="SDI"id="SDI1" onchange="setNews('Instructor',1, this.form.SDI.checked);"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="AWI"id="AWI1" onchange="setNews('Instructor',1, this.form.AW1.checked);"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="WI"id="WI1" onchange="setNews('Instructor',1, this.form.WI1.checked);"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="SWI"id="SWI1" onchange="setNews('Instructor',1, this.form.SWI1.checked);"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="PB2"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="safetyboat"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="PBInst"id="PBInst1"onchange="setNews('Instructor',1, this.form.PBInst1.checked);"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="coach"id="coach1" onchange="setNews('Instructor',1, this.form.coach1.checked);"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="firstaid"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="firstaid_instructor"id="firstaid_instructor1" onchange="setNews('Instructor',1, this.form.firstaid_instructor1.checked);"/></div>
+					<div class="formSkills-member"><input class="formInfo" type="text" name="Name_Skills" readonly="true" value="<?php echo $data->profile['firstname'.$row].' '.$data->profile['lastname'.$row]; ?>" /></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['RYA1_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_RYA1_'.$row; ?>" name="<?php echo 'jform[profile][RYA1_'.$row; ?>]"/></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['RYA2_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_RYA2_'.$row; ?>" name="<?php echo 'jform[profile][RYA2_'.$row; ?>]"/></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['ADI_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_ADI_'.$row; ?>" name="<?php echo 'jform[profile][ADI_'.$row; ?>]" onchange="<?php echo "setNews('Instructor',".$row.", this.form.jform_profile_ADI_". $row .".checked);"; ?>"/></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['DI_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_DI_'.$row; ?>" name="<?php echo 'jform[profile][DI_'.$row; ?>]" onchange="<?php echo "setNews('Instructor',".$row.", this.form.jform_profile_DI_". $row .".checked);"; ?>"/></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['SDI_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_SDI_'.$row; ?>" name="<?php echo 'jform[profile][SDI_'.$row; ?>]" onchange="<?php echo "setNews('Instructor',".$row.", this.form.jform_profile_SDI_". $row .".checked);"; ?>"/></div>										
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['AWI_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_AWI_'.$row; ?>" name="<?php echo 'jform[profile][AWI_'.$row; ?>]" onchange="<?php echo "setNews('Instructor',".$row.", this.form.jform_profile_AWI_". $row .".checked);"; ?>"/></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['WI_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_WI_'.$row; ?>" name="<?php echo 'jform[profile][WI_'.$row; ?>]" onchange="<?php echo "setNews('Instructor',".$row.", this.form.jform_profile_WI_". $row .".checked);"; ?>"/></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['SWI_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_SWI_'.$row; ?>" name="<?php echo 'jform[profile][SWI_'.$row; ?>]" onchange="<?php echo "setNews('Instructor',".$row.", this.form.jform_profile_SWI_". $row .".checked);"; ?>"/></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['PB2_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_PB2_'.$row; ?>" name="<?php echo 'jform[profile][PB2_'.$row; ?>]"/></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['safetyboat_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_safetyboat_'.$row; ?>" name="<?php echo 'jform[profile][safetyboat_'.$row; ?>]"/></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['PBInst_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_PBInst_'.$row; ?>" name="<?php echo 'jform[profile][PBInst_'.$row; ?>]" onchange="<?php echo "setNews('Instructor',".$row.", this.form.jform_profile_PBInst_". $row .".checked);"; ?>"/></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['coach_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_coach_'.$row; ?>" name="<?php echo 'jform[profile][coach_'.$row; ?>]" onchange="<?php echo "setNews('Instructor',".$row.", this.form.jform_profile_coach_". $row .".checked);"; ?>"/></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['firstaid_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_firstaid_'.$row; ?>" name="<?php echo 'jform[profile][firstaid_'.$row; ?>]" onchange="<?php echo "setNews('Instructor',".$row.", this.form.jform_profile_firstaid_". $row .".checked);"; ?>"/></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['firstaid_instructor_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_firstaid_instructor_'.$row; ?>" name="<?php echo 'jform[profile][firstaid_instructor_'.$row; ?>]" onchange="<?php echo "setNews('Instructor',".$row.", this.form.jform_profile_firstaidIinstructor_". $row .".checked);"; ?>"/></div>
 				</div>
-			</div>
+							</div>
+				<?php
+				  }
+				}
+				?>
+
 			<div id="dynamicInputSkills">
 
 			</div>
@@ -533,7 +599,9 @@ echo JHTML::calendar('','jform[profile][dob'.$row.']','jform_profile_dob'.$row,'
 		</legend>
 		<div class="form-all">
 			<p>Keeping in Touch with our membership is important to us, but we also respect your right to privacy and would like to allow you to restrict the amount of email you receive from us.  We will never share your email/phone number lists with anyone outside of the club (unless legally obliged to do so).  If you'd like to receive email updates about specifc areas of the club please select the appropraite options below.  We wouldn't expect you to receive more than 1 or 2 emails from each list per week.</p>
+
 			<div class="field-group">
+
 				<div class="form-row">
 
 					<div class="formSkills-member">Member</div>
@@ -555,29 +623,38 @@ echo JHTML::calendar('','jform[profile][dob'.$row.']','jform_profile_dob'.$row,'
 
 				</div>
 			</div>
+			
+				<?php
+				for ($row=1; $row<=LOOP_COUNTER; $row++) {
+				  if ($row == 1 || $data->profile['membertype'.$row ] != "") {
+				?>
 			<div class="field-group">
 				<div class="form-row">
-					<div class="formSkills-member"><input class="formInfo" type="text" name="Name_News" readonly="true" /></div>
-					<div class="formSkills-cell"><input type="checkbox" name="GenNews" checked="checked"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="JuniorNews" id="JuniorSailing1"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="Team15" id="JuniorWindsurfing1"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="F15" id="Flying Fifteen1"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="GP14" id="GP141"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="Handicap" id="Handicap1"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="Laser" id="Laser1"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="Mirror" id="Mirror1"/></div>								<div class="formSkills-cell"><input type="checkbox" name="Windsurf" id="Windsurf1"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="Optimist" id="Optimist1"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="Perf" id="Performance"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="RS200" id="RS2001"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="Tera" id="Tera1"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="Topaz" id="Topaz1"/></div>
-					<div class="formSkills-cell"><input type="checkbox" name="Topper" id="Topper1"/></div>
-
-
-
+				
+					<div class="formSkills-member"><input class="formInfo" type="text" name="Name_News" readonly="true" value="<?php echo $data->profile['firstname'.$row].' '.$data->profile['lastname'.$row]; ?>" /></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['GenNews_'.$row]){if($data->profile['GenNews_'.$row]="on"){echo 'checked="yes"';}}else{echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_GenNews_'.$row; ?>" name="<?php echo 'jform[profile][GenNews_'.$row; ?>]"/></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['JuniorNews_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_JuniorNews_'.$row; ?>" name="<?php echo 'jform[profile][JuniorNews_'.$row; ?>]"/></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['Team15_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_Team15_'.$row; ?>" name="<?php echo 'jform[profile][Team15_'.$row; ?>]"/></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['F15_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_F15_'.$row; ?>" name="<?php echo 'jform[profile][F15_'.$row; ?>]"/></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['GP14_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_GP14_'.$row; ?>" name="<?php echo 'jform[profile][GP14_'.$row; ?>]"/></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['Handicap_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_Handicap_'.$row; ?>" name="<?php echo 'jform[profile][Handicap_'.$row; ?>]"/></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['Laser_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_Laser_'.$row; ?>" name="<?php echo 'jform[profile][Laser_'.$row; ?>]"/></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['Mirror_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_Mirror_'.$row; ?>" name="<?php echo 'jform[profile][Mirror_'.$row; ?>]"/></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['Optimist_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_Optimist_'.$row; ?>" name="<?php echo 'jform[profile][Optimist_'.$row; ?>]"/></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['Performance_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_Performance_'.$row; ?>" name="<?php echo 'jform[profile][Performance_'.$row; ?>]"/></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['RS200_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_RS200_'.$row; ?>" name="<?php echo 'jform[profile][RS200_'.$row; ?>]"/></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['Tera_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_Tera_'.$row; ?>" name="<?php echo 'jform[profile][Tera_'.$row; ?>]"/></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['Topaz_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_Topaz_'.$row; ?>" name="<?php echo 'jform[profile][Topaz_'.$row; ?>]"/></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['Topper_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_Topper_'.$row; ?>" name="<?php echo 'jform[profile][Topper_'.$row; ?>]"/></div>
+					<div class="formSkills-cell"><input type="checkbox" <?php if($data->profile['Windsurf_'.$row]=="on"){echo 'checked="yes"';} ?> id="<?php echo 'jform_profile_Windsurf_'.$row; ?>" name="<?php echo 'jform[profile][Windsurf_'.$row; ?>]"/></div>
 
 				</div>
 			</div>
+			
+										<?php
+				  }
+				}
+				?>
 			<div id="dynamicInputNews">
 
 			</div>

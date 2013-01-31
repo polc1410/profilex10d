@@ -33,6 +33,7 @@ class plgUserProfile10 extends JPlugin
 	
 	public function __construct(& $subject, $config)
 	{
+
 		parent::__construct($subject, $config);
 		include (JPATH_SITE.'/plugins/user/profile10/configuration.php') ;
 		$this->loadLanguage();
@@ -56,7 +57,6 @@ class plgUserProfile10 extends JPlugin
 	 */
 	function onContentPrepareData($context, $data)
 	{
-die();
 		// Check we are manipulating a valid form.
 		if (!in_array($context, array('com_users.profile', 'com_users.user', 'com_users.registration', 'com_admin.profile')))
 		{
@@ -190,7 +190,36 @@ die();
 				'email'.$loop, 
 				'dob'.$loop,  
 				'mobile'.$loop, 
-				'membertype'.$loop
+				'membertype'.$loop,
+				'RYA1_'.$loop,
+				'RYA2_'.$loop,
+				'ADI_'.$loop,
+				'DI_'.$loop,
+				'SDI_'.$loop,
+				'AWI_'.$loop,
+				'WI_'.$loop,
+				'SWI_'.$loop,
+				'PB2_'.$loop,
+				'safetyboat_'.$loop,
+				'PBInst_'.$loop,
+				'coach_'.$loop,
+				'firstaid_'.$loop,
+				'firstaid_instructor_'.$loop,
+				'GenNews_'.$loop,
+				'JuniorNews_'.$loop,
+				'Team15_'.$loop,
+				'F15_'.$loop,
+				'GP14_'.$loop,
+				'Handicap_'.$loop,
+				'Laser_'.$loop,
+				'Mirror_'.$loop,
+				'Optimist_'.$loop,
+				'Performance_'.$loop,
+				'RS200_'.$loop,
+				'Tera_'.$loop,
+				'Topaz_'.$loop,
+				'Topper_'.$loop,
+				'Windsurf_'.$loop		
 				) ;		
 			$looped_fields = array_merge($looped_fields , $fieldlist);
 			}
@@ -210,7 +239,7 @@ die();
 		$document->addScript(JURI::root( )."media/profile10/scripts/formToWizard.js");
 		$document->addScript(JURI::root( )."media/profile10/scripts/jquery.validationEngine.js");
 		$document->addScript(JURI::root( )."media/profile10/scripts/jquery.validationEngine-en.js");
-		$document->addScript(JURI::root( )."http://code.jquery.com/ui/1.9.2/jquery-ui.js");
+		$document->addScript("http://code.jquery.com/ui/1.9.2/jquery-ui.js");
 		$document->addScript(JURI::root( )."media/profile10/scripts/ModalPopups.js");
 		$document->addStyleSheet(JURI::root( )."media/profile10/style/formProfile.css");
 		$document->addStyleSheet(JURI::root( )."media/profile10/style/validationEngine.jquery.css");
@@ -220,13 +249,13 @@ die();
 		
 	
 		
-		//$form->removeField("name");
-		//$form->removeField("username");
-		//		$form->removeField("password1");
-		//				$form->removeField("password2");
-		//						$form->removeField("email1");
-		//						$form->removeField("email2");
-		//$form->removeGroup("default");
+		$form->removeField("name");
+		$form->removeField("username");
+				$form->removeField("password1");
+						$form->removeField("password2");
+								$form->removeField("email1");
+								$form->removeField("email2");
+		$form->removeGroup("default");
 
 
 						
@@ -234,6 +263,7 @@ die();
 								
 		return true;
 	}
+
 
 	function onUserAfterSave($data, $isNew, $result, $error)
 	{
@@ -244,12 +274,13 @@ die();
 			try
 			{
 				//Sanitize the date
-				if (!empty($data['profile']['dob']))
-				{
-					$date = new JDate($data['profile']['dob']);
-					$data['profile']['dob'] = $date->format('Y-m-d');
+				for($loop = 1; $loop <= LOOP_COUNTER; $loop++ ) {
+				if (!empty($data['profile']['dob'.$loop]))
+					{
+						$date = new JDate($data['profile']['dob'.$loop]);
+						$data['profile']['dob'.$loop] = $date->format('Y-m-d');
+					}
 				}
-
 				$db = JFactory::getDbo();
 				$db->setQuery(
 					'DELETE FROM #__user_profiles WHERE user_id = '.$userId .
@@ -330,3 +361,4 @@ die();
 		return true;
 	}
 }
+
