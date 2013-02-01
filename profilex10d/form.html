@@ -78,6 +78,7 @@ function addInput(divName, selectionType, value){
  			}
 		} 
 		 ?>
+
 		 
 		 var hamperName = null;
 		 hamperName = 'jform_profile_'+selectionType;
@@ -95,6 +96,8 @@ function addInput(divName, selectionType, value){
 		  var calendarId = 'jform_profile_dob'+counter ;
 		  var calendarButton = 'jform_profile_dob'+counter+'_img' ;
           
+
+          htmlResult = '<table id="memberTable'+counter+'"> <tr> 	<td><input type="text" name="jform[profile][firstname'+counter+']" id="jform_profile_firstname'+counter+'" onblur="this.form.Name_Skills'+counter+'.value=this.form.jform_profile_firstname'+counter+'.value.concat(space,this.form.jform_profile_lastname'+counter+'.value);this.form.Name_News'+counter+'.value=this.form.Name_Skills'+counter+'.value"/></td> 	<td><input type="text" name="jform[profile][lastname'+counter+']" id="jform_profile_lastname'+counter+'" onblur="this.form.Name_Skills'+counter+'.value=this.form.jform_profile_firstname'+counter+'.value.concat(space,this.form.jform_profile_lastname'+counter+'.value);this.form.Name_News'+counter+'.value=this.form.Name_Skills'+counter+'.value;" /></td><td><input class="formInfo" src="<?PHP echo JURI::root(); ?>media/profile10/images/duplicate.png" alt="Use Previous" type="image", onclick="this.form.jform_profile_email'+counter+'.value=this.form.jform_profile_email1.value;return false;"></td><td><input type="email" class="validate[custom[email]]" name="jform[profile][email'+counter+']" id="jform_profile_email'+counter+'" /></td> <td><input type="date" class="'+validateDob+'" name="jform[profile][dob'+counter+']" onchange="validateDob('+counter+')" id="jform_profile_dob'+counter+'" /></td> <td><input type="phone" name="jform[profile][mobile'+counter+']" id="jform_profile_mobile'+counter+'" /></td> <td><div class="form-cell" style="white-space:nowrap; "><input type="image" src="<?PHP echo JURI::base(); ?>media/profile10/images/delete.png" onclick="deleteRow(\'memberTable'+counter+'\'); deleteRow(\'skillsTable'+counter+'\'); deleteRow(\'newsTable'+counter+'\');updateBasket(-'+value+');return false;"/><input type="text" class="formInfo" name="jform[profile][membertype'+counter+']" id="jform_profile_membertype'+counter+'"  value ="'+selectionType+'" readonly="true" /></div></td></tr></table>';
           if (selectionType =="famAdu") {
             <?PHP
             $key = searchForId('individ', $plans);
@@ -113,10 +116,14 @@ function addInput(divName, selectionType, value){
 				 document.getElementById(hamperName).value =parseInt(document.getElementById(hamperName).value) + 1;
 
 			if (selectionType =="Space") {
+
 			 htmlResult = "<table id='boatTable"+boatCounter+"'><tr><td><div class='form-cell'><input type='text' name='SailNo' /><label class='form-sub-label'> Sail Number</label></div></td><td><div class='form-cell'><select name='Class"+boatCounter+"' id='Class"+boatCounter+"' onchange='promptOther(this.form.Class"+boatCounter+".value, \"Class"+boatCounter+"\");' /><option>Windsurf</option><option>Flying Fifteen</option><option>RS200</option><option>Laser</option><option>GP14</option><option>Topper</option><option>Topaz</option><option>Mirror</option> <option>Optimist</option> <option>RS Tera</option> <option>Other...</option></select><label class='form-sub-label'>Class</label></div></td><td><div class='form-cell'><input type='text' name='BoatName' /><label class='form-sub-label'>Boat Name</label></div></td><td ><div class='form-cell' style='white-space:nowrap; '><input type='text' name='DinghySpace' style='width:4em; background: grey;' readonly='true'/><input type='image' src='<?PHP echo JURI::base(); ?>media/profile10/images/dpark.png' alt='Select Space' onclick='return false;' /><label class='form-sub-label'>Dinghy Space</label></div><input type='image' src='<?PHP echo JURI::base(); ?>media/profile10/images/delete.png' onclick='deleteRow(\"boatTable"+boatCounter+"\");updateBasket(-"+value+");document.getElementById(\""+hamperName+"\").value = parseInt(document.getElementById(\""+hamperName+"\").value)-1; return false;'/></td></tr></table>";
+
 			 }
 			 else {
-			 			 htmlResult = "<table id='boatTable"+boatCounter+"'><tr><td><div class='form-cell'> <input type='text' name='SailNo' /><label class='form-sub-label'> Sail Number</label> </div></td><td><div class='form-cell'><select name='Class"+boatCounter+"' id='Class"+boatCounter+"'  <option>Windsurf</option><option>Flying Fifteen</option><option>RS-200</option> <option>Laser</option><option>GP-14</option><option>Topper</option><option>Topaz</option> <option>Mirror</option> <option>Optimist</option> <option>RS Tera</option> <option>Other...</option></select><label class='form-sub-label'>Class</label></div></td><td><div class='form-cell'><input type='text' name='BoatName' /> <label class='form-sub-label'>Boat Name</label></div></td><td > <input type='image' src='<?PHP echo JURI::base(); ?>media/profile10/images/delete.png' onclick='deleteRow(\"boatTable"+boatCounter+"\");updateBasket(-"+value+");document.getElementById(\""+hamperName+"\").value = parseInt(document.getElementById(\""+hamperName+"\").value)-1; return false;'/></td></tr></table>";
+
+			 			 htmlResult = "<table id='boatTable"+boatCounter+"'><tr><td><div class='form-cell'><input type='text' name='SailNo' /><label class='form-sub-label'> Sail Number</label></div></td><td><div class='form-cell'><select name='Class"+boatCounter+"' id='Class"+boatCounter+"' onchange='promptOther(this.form.Class"+boatCounter+".value, \"Class"+boatCounter+"\");' /><option>Windsurf</option><option>Flying Fifteen</option><option>RS-200</option><option>Laser</option><option>GP-14</option><option>Topper</option><option>Topaz</option><option>Mirror</option> <option>Optimist</option> <option>RS Tera</option> <option>Other...</option></select><label class='form-sub-label'>Class</label></div></td><td><div class='form-cell'><input type='text' name='BoatName' /><label class='form-sub-label'>Boat Name</label></div></td><td ><input type='image' src='<?PHP echo JURI::root(); ?>media/profile10/images/delete.png' onclick='deleteRow(\"boatTable"+boatCounter+"\");updateBasket(-"+value+");return false;'/></td></tr></table>";
+
 			 }
 			 break;
 
@@ -304,10 +311,15 @@ function ModalPopupsPrompt() {
  </DIV>
 <form class="jotform-form" method="POST" name ="jotform-form" id="jotform-form" action="<?php echo  JRoute::_( 'index.php?option=com_acctexp' ) ; ?>">
 
-	<div class="Cart"><ul class="list-icon cart"><li>
-		Current value: &pound;<input name="Basket" id="Basket" value="<?PHP echo $plans[$_GET[usage]-1][price];?>" class="formInfo" size="5" readonly="true" />
-		</li></ul></div>
-	
+
+
+	<div class="Cart"><img src="<?PHP echo JURI::root(); ?>media/profile10/images/shopping_cart.png" height="16px" width = "16px"/>
+
+
+		<div class="form-cell" style="white-space: nowrap;">Current value: &pound;<input name="Basket" id="Basket" value="<?PHP echo $plans[$_GET[usage]-1][price];?>" class="formInfo" size="5" readonly="true" />
+		</div>
+	</div>
+
 	<fieldset>
 		<legend>Contact Info</legend>
 	 	<div class="form-all">
@@ -672,7 +684,7 @@ function ModalPopupsPrompt() {
 			</div>
 		</div>
 
-		<P>If you are happy with the information you have completed so far please click the Submit Button to be taken to our secure payment gateway.</p>
+		<P>If you are happy with the information you have completed so far please click the Register Button to be taken to our secure payment gateway.</p>
 			<input type="hidden" name="jform[name]" id="jform_name" />
 	</fieldset>
 			<input type="submit" name="register" value="Register" id="register" class="register"/>
