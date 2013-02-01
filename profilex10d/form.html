@@ -1,7 +1,7 @@
 <?PHP 
 
 	    //READ THE PRICE 
-		$filename=(JPATH_BASE . "/plugins/user/profile10/plans.txt");      
+		$filename=(JPATH_ROOT . "/plugins/user/profile10/plans.txt");      
             $mappings = array();
             $id = fopen($filename, "r"); //open the file
             $CSVdata = fgetcsv($id, filesize($filename), "\t"); 
