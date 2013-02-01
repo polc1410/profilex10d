@@ -62,6 +62,17 @@ class plgUserProfile10 extends JPlugin
 		{
 			return true;
 		}
+<<<<<<< HEAD
+=======
+		
+		// Check this is not the contact form.
+		if (in_array($context, array('com_contact', 'com_users.user'))) 
+		{
+			return true;
+		}
+
+
+>>>>>>> refs/heads/svaechanges
 
 		if (is_object($data))
 		{
@@ -239,7 +250,11 @@ class plgUserProfile10 extends JPlugin
 		$document->addScript(JURI::root( )."media/profile10/scripts/formToWizard.js");
 		$document->addScript(JURI::root( )."media/profile10/scripts/jquery.validationEngine.js");
 		$document->addScript(JURI::root( )."media/profile10/scripts/jquery.validationEngine-en.js");
+<<<<<<< HEAD
 		$document->addScript("http://code.jquery.com/ui/1.9.2/jquery-ui.js");
+=======
+		$document->addScript(JURI::root( )."http://code.jquery.com/ui/1.9.2/jquery-ui.js");
+>>>>>>> refs/heads/svaechanges
 		$document->addScript(JURI::root( )."media/profile10/scripts/ModalPopups.js");
 		$document->addStyleSheet(JURI::root( )."media/profile10/style/formProfile.css");
 		$document->addStyleSheet(JURI::root( )."media/profile10/style/validationEngine.jquery.css");

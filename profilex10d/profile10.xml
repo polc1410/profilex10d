@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
+
 <extension version="2.5.6" type="plugin" group="user" method="upgrade">
 	<name>plg_user_profile10</name>
 	<author>Calum Polwart, using code derived from Joomla.org</author>
@@ -18,8 +21,6 @@
 		<filename>plans.txt</filename>
 		<filename>configuration.php</filename>
 		<folder>profiles</folder>
-
-
 	</files>
 
 	<media folder="media" destination="profile10">
@@ -27,9 +28,13 @@
                 <folder>scripts</folder>
 		<folder>images</folder>
         </media>
-
-        <media folder="plugins/system/aecrouting">
+	
+    <media destination="../plugins/system/aecrouting">
 		<filename>aecrouting.php</filename>
+	</media>
+	
+	<media destination="../components/com_acctexp">
+		<folder>micro_integration</folder>
 	</media>
 	<languages>
 		<language tag="en-GB">en-GB.plg_user_profile10.ini</language>
