@@ -355,8 +355,38 @@ class plgSystemAECrouting extends JPlugin
 	function onAfterRender()
 	{
 		if ( strpos( JPATH_BASE, '/administrator' ) ) {
-			// Don't act when on backend
+//added some backend admin control by combining the profile with the form.
+
+		$search		= array();
+		$replace	= array();
+		$change		= false;
+		$body 		= JResponse::getBody();
+		$vars 		= $this->getVars();
+
+		// Make sure we need to make a call at all
+		if ( !( $vars['cu'] && $vars['view'] =="user") ) {
 			return true;
+		}
+
+		// remove inbuilt validation step
+   		//$search[]	= "if (task == 'user.cancel' || document.formvalidator.isValid(document.id('user-form'))) {";
+		//$replace[]	= "if (task) {";
+		
+		// locate the top of the form and remove it ;-)
+		$search[]	= '#(<form .*id="user-form" class="form-validate".*>)#';
+		$replace[]	= '';
+
+
+		if ( !empty( $search ) ) {
+			$body	= preg_replace( $search, $replace, $body );
+			$change	= true;
+		}
+
+		if ( $change ) {
+			JResponse::setBody( $body );
+		}			
+
+		return true;
 		}
 
 		$vars = $this->getVars();

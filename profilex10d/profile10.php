@@ -261,16 +261,24 @@ class plgUserProfile10 extends JPlugin
 	 	include(JPATH_SITE."/plugins/user/profile10/form.html");
 		
 	
-		
-		$form->removeField("name");
-		$form->removeField("username");
-				$form->removeField("password1");
-						$form->removeField("password2");
-								$form->removeField("email1");
-								$form->removeField("email2");
-		$form->removeGroup("default");
-
-
+		if (JURI::root() == JURI::base() ) {
+			$form->removeField("name");
+			$form->removeField("username");
+			$form->removeField("password1");
+			$form->removeField("password2");
+			$form->removeField("email1");
+			$form->removeField("email2");
+			$form->removeGroup("default");
+		} else {
+			$form->removeField("name");
+			$form->removeField("username");
+			$form->removeField("password");
+			$form->removeField("password2");
+			$form->removeField("email");
+			$form->removeField("email2");
+			$form->removeGroup("user_details");
+			//$form->removeGroup("settings");
+}
 						
 								
 								
@@ -281,6 +289,12 @@ class plgUserProfile10 extends JPlugin
 	function onUserAfterSave($data, $isNew, $result, $error)
 	{
 		$userId	= JArrayHelper::getValue($data, 'id', 0, 'int');
+
+		if (!isset($data['profile'])) {
+		$tempData = array();
+		$tempData = $_POST['jform'];
+		$data['profile'] = $tempData['profile'];
+		}
 
 		if ($userId && $result && isset($data['profile']) && (count($data['profile'])))
 		{
